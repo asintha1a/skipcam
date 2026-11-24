@@ -1,6 +1,6 @@
 # Third-party notices
 
-SkipCam includes components with the following authorship and license notices. The MIT-licensed source foundation is attributed in the README's Attribution and License section and in [LICENSE](LICENSE).
+SkipCam incorporates code from the MIT-licensed [QR Snip](https://github.com/IsaacJoel06/qr-snip) project by Isaac Joel Mithran. The original copyright and license terms are preserved in [LICENSE](LICENSE). The following third-party components retain their respective licenses and notices.
 
 | Component | Role | License |
 | --- | --- | --- |
