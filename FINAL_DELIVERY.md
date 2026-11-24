@@ -4,7 +4,7 @@ Updated: 2026-11-24. This report distinguishes verified outcomes from pending br
 
 ## Published source and packages
 
-- **VERIFIED — GitHub repository:** [asintha1a/snipray](https://github.com/asintha1a/snipray), public. The pushed `main` commit is `de89800bcd9feb66a4f597ddf4d49b494db0a816`.
+- **VERIFIED — GitHub repository:** [asintha1a/snipray](https://github.com/asintha1a/snipray), public. The published implementation is in commit `de89800bcd9feb66a4f597ddf4d49b494db0a816`; the beta archives and delivery report follow on `main`.
 - **VERIFIED — Attribution:** SnipRay is an independently maintained, enhanced derivative of [QR Snip](https://github.com/IsaacJoel06/qr-snip). Upstream history, Isaac Joel Mithran's MIT notice and third-party notices are preserved.
 - **VERIFIED — Beta release:** [v1.0.0-beta.1](https://github.com/asintha1a/snipray/releases/tag/v1.0.0-beta.1) exists as a prerelease. It is not represented as a stable or fully browser-verified release.
 - **BLOCKED — Release attachments:** GitHub's release asset upload host could not resolve from the publishing environment. The tested packages are committed in the public repository and direct download URLs below return HTTP 200.
