@@ -25,3 +25,4 @@ web-ext-artifacts/
 
 .vercel/
 playwright-report/
+.vercel
