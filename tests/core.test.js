@@ -18,7 +18,7 @@ function raster(code) {
   return { data, width, height: width };
 }
 
-test('encoder and exact upstream decoder round-trip Unicode and all error correction levels', () => {
+test('encoder and bundled decoder round-trip Unicode and all error correction levels', () => {
   for (const level of ['L', 'M', 'Q', 'H']) {
     for (const value of ['https://example.org/', 'SnipRay · සිංහල 日本語']) {
       assert.equal(decodePixels(raster(matrix(value, level))), value);
