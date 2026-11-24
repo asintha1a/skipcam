@@ -20,7 +20,7 @@ function raster(code) {
 
 test('encoder and bundled decoder round-trip Unicode and all error correction levels', () => {
   for (const level of ['L', 'M', 'Q', 'H']) {
-    for (const value of ['https://example.org/', 'SnipRay · සිංහල 日本語']) {
+    for (const value of ['https://example.org/', 'SkipCam · සිංහල 日本語']) {
       assert.equal(decodePixels(raster(matrix(value, level))), value);
     }
   }

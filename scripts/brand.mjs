@@ -1,49 +1,66 @@
+import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
-import { writeFile } from 'node:fs/promises';
 
-const ink = '#101312';
-const lime = '#b9ff66';
-const light = '#f5f7f2';
-const glyph = '<path d="M7 12V7h5m12 0h5v5M7 24v5h5m12 0h5v-5" fill="none" stroke="' + lime + '" stroke-width="2.3" stroke-linecap="square"/><path d="M12 11h4v4h-4zm8 0h4v4h-4zm-8 10h4v4h-4zm8 0h4v4h-4zm4 4h2v2h-2z" fill="' + lime + '"/><path d="M5 18h26" stroke="' + lime + '" stroke-width="1.8"/>';
-const tile = '<rect width="36" height="36" rx="8" fill="' + ink + '"/>' + glyph;
-const vector = (width, height, body) => `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${body}</svg>`;
-const text = (x, y, size, value, fill = light, weight = 650, font = 'Arial, sans-serif') =>
-  `<text x="${x}" y="${y}" fill="${fill}" font-family="${font}" font-size="${size}" font-weight="${weight}" letter-spacing="${size > 40 ? -0.055 * size : 0}">${value}</text>`;
-const mark = (x, y, scale) => `<g transform="translate(${x},${y}) scale(${scale})">${tile}</g>`;
-const lockup = vector(520, 160, mark(10, 19, 3.3) + text(146, 89, 79, 'snipray.', ink) + text(151, 124, 21, 'by Self Graphic Lab', ink, 400));
+const ink = '#111111';
+const surface = '#202020';
+const lime = '#C5FF41';
+const white = '#FFFFFF';
+const grey = '#AAAAAA';
 const brand = 'assets/brand/';
-await writeFile(brand + 'symbol.svg', vector(36, 36, tile));
-await writeFile(brand + 'wordmark.svg', vector(326, 110, text(0, 82, 94, 'snipray.', ink)));
-await writeFile(brand + 'lockup.svg', lockup);
-const browser = await chromium.launch({ channel: process.env.SNIPRAY_CHROME_CHANNEL || 'chrome', headless: true });
+await mkdir(brand + 'variants', { recursive: true });
+
+const svg = (width, height, body) => `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${body}</svg>`;
+const glyph = (color = lime, cutout = ink) => `<path d="M8 15V8h7M21 8h7v7M8 21v7h7M21 28h7v-7" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 14h10v8H13z" fill="none" stroke="${color}" stroke-width="2.4" stroke-linejoin="round"/><circle cx="18" cy="18" r="2.1" fill="${color}"/><path d="M6 30 30 6" stroke="${cutout}" stroke-width="7" stroke-linecap="round"/><path d="M6 30 30 6" stroke="${color}" stroke-width="3.4" stroke-linecap="round"/>`;
+const mark = (x, y, size, color = lime, cutout = ink) => `<g transform="translate(${x} ${y}) scale(${size / 36})">${glyph(color, cutout)}</g>`;
+const wordmark = (width, height, foreground = white, accent = lime) => svg(width, height, `<text x="0" y="${height * .78}" fill="${foreground}" font-family="Arial, Helvetica, sans-serif" font-size="${height * .76}" font-weight="800" letter-spacing="${-height * .035}">skip</text><text x="${height * 1.55}" y="${height * .78}" fill="${accent}" font-family="Arial, Helvetica, sans-serif" font-size="${height * .76}" font-weight="800" letter-spacing="${-height * .035}">cam.</text>`);
+const lockup = (background = 'none', foreground = white, accent = lime, endorsement = true) => svg(720, 220, `${background === 'none' ? '' : `<rect width="720" height="220" fill="${background}"/>`}${mark(18, 25, 168, accent, background === 'none' ? 'none' : background)}<text x="210" y="119" fill="${foreground}" font-family="Arial, Helvetica, sans-serif" font-size="102" font-weight="800" letter-spacing="-5.6">skip</text><text x="420" y="119" fill="${accent}" font-family="Arial, Helvetica, sans-serif" font-size="102" font-weight="800" letter-spacing="-5.6">cam.</text>${endorsement ? `<text x="218" y="164" fill="${grey}" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" letter-spacing="7">BY SELF GRAPHIC LAB</text>` : ''}`);
+
+await writeFile(brand + 'symbol.svg', svg(36, 36, glyph(lime, 'none')));
+await writeFile(brand + 'wordmark.svg', wordmark(390, 110));
+await writeFile(brand + 'lockup.svg', lockup());
+await writeFile(brand + 'lockup-endorsed.svg', lockup('none', white, lime, true));
+await writeFile(brand + 'favicon.svg', svg(48, 48, `<rect width="48" height="48" rx="3" fill="${ink}"/>${mark(6, 6, 36, lime, ink)}`));
+await writeFile(brand + 'variants/symbol-black.svg', svg(36, 36, glyph(ink, 'none')));
+await writeFile(brand + 'variants/symbol-white.svg', svg(36, 36, glyph(white, 'none')));
+await writeFile(brand + 'variants/wordmark-black.svg', wordmark(390, 110, ink, ink));
+await writeFile(brand + 'variants/wordmark-white.svg', wordmark(390, 110, white, white));
+await writeFile(brand + 'variants/lockup-black.svg', lockup('none', ink, ink, true));
+await writeFile(brand + 'variants/lockup-white.svg', lockup('none', white, white, true));
+
+const browser = await chromium.launch({ channel: process.env.SKIPCAM_CHROME_CHANNEL || 'chrome', headless: true });
 const page = await browser.newPage({ deviceScaleFactor: 1 });
-async function raster(svg, path, width, height) {
+async function raster(source, path, width, height) {
   await page.setViewportSize({ width, height });
-  await page.setContent('<style>body{margin:0}svg{display:block}</style>' + svg);
+  await page.setContent('<style>body{margin:0}svg{display:block}</style>' + source);
   await page.screenshot({ path, omitBackground: true });
 }
 for (const size of [16, 32, 48, 128, 512, 1024]) {
-  const svg = vector(size, size, mark(0, 0, size / 36));
-  await raster(svg, size <= 128 ? 'extension/icons/icon' + size + '.png' : brand + 'icon' + size + '.png', size, size);
+  const icon = svg(size, size, `<rect width="${size}" height="${size}" rx="${Math.round(size * .18)}" fill="${ink}"/>${mark(0, 0, size, lime, ink)}`);
+  await raster(icon, size <= 128 ? `extension/icons/icon${size}.png` : `${brand}icon${size}.png`, size, size);
 }
-await raster(lockup.replace('width="520" height="160"', 'width="1040" height="320"'), brand + 'logo-transparent.png', 1040, 320);
+await raster(lockup('none'), brand + 'logo-transparent.png', 720, 220);
+await raster(lockup('none', ink, ink).replace('stroke="white"', 'stroke="none"'), brand + 'variants/lockup-black.png', 720, 220);
+await raster(lockup('none', white, white).replace('stroke="white"', 'stroke="none"'), brand + 'variants/lockup-white.png', 720, 220);
+await raster(svg(512, 512, `<g transform="translate(94 94) scale(9)">${glyph(lime, 'none')}</g>`), brand + 'symbol-transparent.png', 512, 512);
+await raster(svg(512, 512, `<g transform="translate(94 94) scale(9)">${glyph(ink, 'none')}</g>`), brand + 'variants/symbol-black.png', 512, 512);
+await raster(svg(512, 512, `<g transform="translate(94 94) scale(9)">${glyph(white, 'none')}</g>`), brand + 'variants/symbol-white.png', 512, 512);
+await raster(wordmark(960, 240, ink, ink), brand + 'variants/wordmark-black.png', 960, 240);
+await raster(wordmark(960, 240, white, white), brand + 'variants/wordmark-white.png', 960, 240);
+await raster(svg(48, 48, `<rect width="48" height="48" rx="3" fill="${ink}"/>${mark(6, 6, 36, lime, ink)}`), brand + 'favicon.png', 48, 48);
 
 function cover(width, height) {
   const scale = width / 1280;
-  const y = height / scale;
-  const grid = `<defs><pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0v48" fill="none" stroke="#303831"/></pattern></defs><rect width="1280" height="${y}" fill="${ink}"/><rect x="730" width="550" height="${y}" fill="url(#grid)"/><path d="M80 72h1120M80 ${y - 72}h1120" stroke="#39413a"/>`;
-  return vector(width, height, `<g transform="scale(${scale})">${grid}${text(80, 113, 17, 'SELF GRAPHIC LAB', lime, 600, 'monospace')}
-    ${text(74, y / 2 + 15, 143, 'snipray.')}${text(84, y / 2 + 82, 35, 'See it. Snip it. Scan it.', light, 400)}
-    ${text(82, y - 99, 15, 'SCAN / GENERATE / INSPECT', lime, 600, 'monospace')}
-    ${mark(805, y / 2 - 134, 8)}<path d="M771 ${y / 2 + 10}h356" stroke="${lime}" stroke-width="2"/></g>`);
+  const unitHeight = height / scale;
+  const art = `<rect width="1280" height="${unitHeight}" fill="${ink}"/><path d="M84 84h1112M84 ${unitHeight - 84}h1112" stroke="#393939"/><path d="M820 0h460v${unitHeight}H820z" fill="${surface}"/><path d="M860 0v${unitHeight}M940 0v${unitHeight}M1020 0v${unitHeight}M1100 0v${unitHeight}M1180 0v${unitHeight}" stroke="#292929"/>`;
+  return svg(width, height, `<g transform="scale(${scale})">${art}<text x="86" y="132" fill="${lime}" font-family="monospace" font-size="19" font-weight="700" letter-spacing="3">SELF GRAPHIC LAB / BROWSER TOOL</text>${mark(92, unitHeight / 2 - 94, 188)}<text x="315" y="${unitHeight / 2 + 22}" fill="${white}" font-family="Arial, Helvetica, sans-serif" font-size="133" font-weight="800" letter-spacing="-7">skip</text><text x="584" y="${unitHeight / 2 + 22}" fill="${lime}" font-family="Arial, Helvetica, sans-serif" font-size="133" font-weight="800" letter-spacing="-7">cam.</text><text x="323" y="${unitHeight / 2 + 91}" fill="${white}" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="650">Skip the camera. Scan anyway.</text><text x="86" y="${unitHeight - 112}" fill="${grey}" font-family="Arial, Helvetica, sans-serif" font-size="21">Your phone can sit this one out.</text><text x="86" y="${unitHeight - 78}" fill="${lime}" font-family="monospace" font-size="16" letter-spacing="2">SCAN / GENERATE / INSPECT</text></g>`);
 }
-for (const [file, w, h] of [['social-preview.png', 1280, 640], ['cover.png', 1600, 900]]) await raster(cover(w, h), brand + file, w, h);
-const swatches = [[lime, '#B9FF66'], [ink, '#101312'], ['#262c28', '#262C28'], [light, '#F5F7F2']].map(([color, name], index) => {
-  const x = 75 + index * 270;
-  return `<rect x="${x}" y="540" width="240" height="130" rx="6" fill="${color}" stroke="#9aa299"/>` + text(x, 703, 20, name, ink, 600, 'monospace');
+await raster(cover(1280, 640), brand + 'social-preview.png', 1280, 640);
+await raster(cover(1600, 900), brand + 'cover.png', 1600, 900);
+
+const palette = [[lime, '#C5FF41'], [ink, '#111111'], [surface, '#202020'], [white, '#FFFFFF'], [grey, '#AAAAAA']].map(([color, label], i) => {
+  const x = 60 + i * 218;
+  return `<rect x="${x}" y="588" width="190" height="96" fill="${color}" stroke="#999"/><text x="${x}" y="714" fill="${ink}" font-family="monospace" font-size="17">${label}</text>`;
 }).join('');
-await raster(vector(1200, 780, '<rect width="1200" height="780" fill="' + light + '"/>' +
-  text(74, 99, 24, 'SELF GRAPHIC LAB / SNIPRAY', ink, 600, 'monospace') + '<path d="M75 122h1050M75 480h1050" stroke="#a6aea2"/>' +
-  mark(75, 182, 6.6) + text(373, 325, 140, 'snipray.', ink) + text(382, 383, 30, 'by Self Graphic Lab', ink, 400) + swatches),
-  brand + 'identity-sheet.png', 1200, 780);
+const sheet = svg(1200, 780, `<rect width="1200" height="780" fill="#F5F5F5"/><text x="60" y="74" fill="${ink}" font-family="monospace" font-size="18" letter-spacing="2">SELF GRAPHIC LAB / BRAND IDENTITY</text><path d="M60 98h1080" stroke="#bbb"/>${lockup('#F5F5F5', ink, lime, true).replace('<svg xmlns="http://www.w3.org/2000/svg" width="720" height="220" viewBox="0 0 720 220">','<g transform="translate(160 150) scale(1.18)">').replace('</svg>','</g>')}<text x="60" y="536" fill="${ink}" font-family="monospace" font-size="16" letter-spacing="2">PALETTE</text>${palette}<text x="60" y="756" fill="${grey}" font-family="Arial, sans-serif" font-size="18">Skip the camera. Scan anyway. · by Self Graphic Lab</text>`);
+await raster(sheet, brand + 'identity-sheet.png', 1200, 780);
 await browser.close();

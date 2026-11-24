@@ -12,7 +12,7 @@ async function browser(target) {
   await rm(dir, { recursive: true, force: true });
   await mkdir(dir, { recursive: true });
   const base = await json('extension/manifest.base.json');
-  const manifest = { ...base, ...await json('extension/manifest.' + target + '.json'), version };
+  const manifest = { ...base, ...await json('extension/manifest.' + target + '.json'), version: version.split('-')[0] };
   manifest.action.default_icon = base.icons;
   await writeFile(dir + '/manifest.json', JSON.stringify(manifest, null, 2) + '\n');
   await Promise.all([
@@ -22,7 +22,7 @@ async function browser(target) {
     ...['app.html', 'app.css', 'overlay.js', 'icons'].map(file => cp('extension/' + file, dir + '/' + file, { recursive: true })),
     ...['LICENSE', 'THIRD_PARTY_NOTICES.md', 'PRIVACY.md', 'notices'].map(file => cp(file, dir + '/' + file, { recursive: true }))
   ]);
-  const archive = resolve('dist/snipray-' + target + '-v' + version + '.zip');
+  const archive = resolve('dist/skipcam-' + target + '-v' + version + '.zip');
   await rm(archive, { force: true });
   execFileSync('zip', ['-q', '-X', '-r', archive, '.'], { cwd: dir });
 }
@@ -35,11 +35,10 @@ async function website() {
   await Promise.all([
     build({ ...entry('site/demo.js', dir), format: 'esm' }),
     cp('assets/screenshots', dir + '/media', { recursive: true }),
-    ...['symbol.svg', 'social-preview.png', 'cover.png'].map(file => cp('assets/brand/' + file, dir + '/media/' + file))
+    ...['symbol.svg', 'social-preview.png', 'cover.png', 'favicon.svg', 'favicon.png'].map(file => cp('assets/brand/' + file, dir + '/media/' + file))
   ]);
   await cp('notices', dir + '/notices', { recursive: true });
-  const vercelProduction = process.env.VERCEL_PROJECT_PRODUCTION_URL;
-  const configured = process.env.SNIPRAY_SITE_URL || (vercelProduction?.endsWith('.vercel.app') ? vercelProduction : 'https://snipray.vercel.app');
+  const configured = process.env.SKIPCAM_SITE_URL || 'https://skipcam.vercel.app';
   const site = configured ? new URL(configured.includes('://') ? configured : 'https://' + configured).origin : null;
   const html = await readFile(dir + '/index.html', 'utf8');
   await writeFile(dir + '/index.html', html.replace('<!-- deploy-metadata -->', site ?

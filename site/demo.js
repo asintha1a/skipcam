@@ -32,7 +32,7 @@ byId('download').onclick = () => {
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement('a');
     anchor.href = url;
-    anchor.download = 'snipray-qr.png';
+    anchor.download = 'skipcam-qr.png';
     anchor.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   });

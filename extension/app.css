@@ -1,6 +1,6 @@
-:root{color-scheme:light dark;--lime:#b9ff66;--base:#f5f7f2;--panel:#fff;--ink:#101312;--mute:#4b564e;--line:#ced8ce;--warning:#795200;--accent:#386612;font:15px/1.48 system-ui,sans-serif}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--base:#101312;--panel:#191e1a;--ink:#f5f7f2;--mute:#aab7aa;--line:#36423a;--warning:#ffd378;--accent:#b9ff66}}
-:root[data-theme=dark]{color-scheme:dark;--base:#101312;--panel:#191e1a;--ink:#f5f7f2;--mute:#aab7aa;--line:#36423a;--warning:#ffd378;--accent:#b9ff66}
+:root{color-scheme:light dark;--lime:#C5FF41;--base:#FFFFFF;--panel:#f4f4f4;--ink:#111111;--mute:#555;--line:#d4d4d4;--warning:#795200;--accent:#4b7100;font:15px/1.48 system-ui,sans-serif}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--base:#111111;--panel:#202020;--ink:#FFFFFF;--mute:#AAAAAA;--line:#404040;--warning:#ffd378;--accent:#C5FF41}}
+:root[data-theme=dark]{color-scheme:dark;--base:#111111;--panel:#202020;--ink:#FFFFFF;--mute:#AAAAAA;--line:#404040;--warning:#ffd378;--accent:#C5FF41}
 :root[data-theme=light]{color-scheme:light}
 *{box-sizing:border-box} [hidden]{display:none!important}
 body{margin:0;background:var(--base);color:var(--ink)}
@@ -14,7 +14,7 @@ p{margin:0 0 15px} #status{color:var(--warning);overflow-wrap:anywhere;margin:12
 button,a.button,input,textarea,select{font:inherit} button,a.button{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:7px;padding:9px 13px;text-decoration:none;min-height:42px}
 button:hover,a.button:hover{border-color:var(--accent)} button:disabled{opacity:.55;cursor:default}
 :where(button,a,input,textarea,select,section):focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-button.primary{background:var(--lime);color:#101312;border-color:#a8e962;font-weight:720}
+button.primary{background:var(--lime);color:#111111;border-color:#a8d72f;font-weight:720}
 button.scan{width:100%;text-align:left;padding:14px;display:flex;align-items:center;justify-content:space-between;font-size:17px}
 .actions,.grid{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}.popup .grid{display:grid;grid-template-columns:1fr 1fr}
 .grid button{text-align:left} a{color:var(--accent)} .subtle{color:var(--mute);font-size:13px}

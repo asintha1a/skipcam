@@ -1,4 +1,4 @@
-# SnipRay testing guide
+# SkipCam testing guide
 
 ## Automated checks
 
@@ -15,14 +15,14 @@ The Node suite covers QR encoding/decoding, content classification, URL inspecti
 
 ## Load an extension package
 
-Download a package from the [v1.0.0-beta.1 release](https://github.com/asintha1a/snipray/releases/tag/v1.0.0-beta.1) and extract it first.
+Download a package from the [v1.0.0-beta.2 release](https://github.com/asintha1a/skipcam/releases/tag/v1.0.0-beta.2) and extract it first.
 
 ### Chrome, Edge or Brave
 
 1. Open the browser's Extensions page (`chrome://extensions` or `edge://extensions`).
 2. Turn on **Developer mode**.
 3. Choose **Load unpacked** and select the extracted Chromium package directory.
-4. Pin SnipRay, open a normal webpage, and test the actions below.
+4. Pin SkipCam, open a normal webpage, and test the actions below.
 
 ### Firefox 140+
 

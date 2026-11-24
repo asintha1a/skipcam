@@ -1,7 +1,7 @@
 {
-  "name": "snipray",
-  "version": "1.0.0",
-  "description": "Scan, generate and inspect QR codes locally in your browser.",
+  "name": "skipcam",
+  "version": "1.0.0-beta.2",
+  "description": "Skip the camera. Scan, generate and inspect QR codes directly in your browser. A privacy-first open-source utility by Self Graphic Lab.",
   "scripts": {
     "test": "node --test",
     "build": "node scripts/build.mjs",

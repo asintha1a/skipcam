@@ -1,6 +1,6 @@
 import { historyValue, inspect } from './content-type.js';
 
-export const defaults = { theme: 'system', remember: false, days: 30, motion: 'system', size: 512, level: 'M', foreground: '#101312', background: '#ffffff' };
+export const defaults = { theme: 'system', remember: false, days: 30, motion: 'system', size: 512, level: 'M', foreground: '#111111', background: '#ffffff' };
 
 export function cleanHistory(items, settings, now = Date.now()) {
   if (!settings.remember || !Array.isArray(items)) return [];

@@ -52,7 +52,7 @@ async function start(tab) {
 }
 
 api.runtime.onInstalled.addListener(() => {
-  api.contextMenus.create({ id: menu, title: 'Scan image with SnipRay', contexts: ['image'] });
+  api.contextMenus.create({ id: menu, title: 'Scan image with SkipCam', contexts: ['image'] });
 });
 api.commands.onCommand.addListener(async command => {
   if (command !== 'scan-screen') return;

@@ -11,12 +11,12 @@
     *{box-sizing:border-box}
     .overlay{position:absolute;inset:0;cursor:crosshair;touch-action:none;color:#f5f7f2;font:14px system-ui;background:rgba(16,19,18,.5)}
     .overlay.drag{background:transparent}
-    .bar{position:absolute;top:18px;left:50%;transform:translateX(-50%);max-width:calc(100% - 24px);width:max-content;display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#101312;border:1px solid #485048;padding:9px 12px;border-radius:9px;z-index:1;cursor:default}
-    strong{font-size:17px;color:#b9ff66}
-    button{font:inherit;color:inherit;border:1px solid #58615a;background:#262c28;padding:8px 10px;border-radius:5px;cursor:pointer;min-height:36px}
-    button:focus-visible{outline:2px solid #b9ff66;outline-offset:2px}
-    .box{position:absolute;border:2px solid #b9ff66;box-shadow:0 0 0 100vmax rgba(16,19,18,.54);pointer-events:none}
-    .box:after{content:'';position:absolute;top:50%;width:100%;height:1px;background:#b9ff66}
+    .bar{position:absolute;top:18px;left:50%;transform:translateX(-50%);max-width:calc(100% - 24px);width:max-content;display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#111;border:1px solid #484848;padding:9px 12px;border-radius:9px;z-index:1;cursor:default}
+    strong{font-size:17px;color:#C5FF41}
+    button{font:inherit;color:inherit;border:1px solid #585858;background:#202020;padding:8px 10px;border-radius:5px;cursor:pointer;min-height:36px}
+    button:focus-visible{outline:2px solid #C5FF41;outline-offset:2px}
+    .box{position:absolute;border:2px solid #C5FF41;box-shadow:0 0 0 100vmax rgba(17,17,17,.54);pointer-events:none}
+    .box:after{content:'';position:absolute;top:50%;width:100%;height:1px;background:#C5FF41}
   `);
   root.adoptedStyleSheets = [sheet];
   function node(tag, className, value) {
@@ -28,7 +28,7 @@
   const overlay = node('div', 'overlay');
   overlay.setAttribute('role', 'dialog');
   overlay.setAttribute('aria-modal', 'true');
-  overlay.setAttribute('aria-label', 'SnipRay screen selection');
+  overlay.setAttribute('aria-label', 'SkipCam screen selection');
   overlay.setAttribute('aria-describedby', 'snipray-instructions');
   const bar = node('div', 'bar');
   const instructions = node('span', '', 'Drag around a QR code, or scan the visible tab.');
@@ -37,7 +37,7 @@
   const full = node('button', '', 'Scan visible tab');
   const box = node('div', 'box');
   box.hidden = true;
-  bar.append(node('strong', '', 'snipray.'), instructions, full, cancel);
+  bar.append(node('strong', '', 'skipcam.'), instructions, full, cancel);
   overlay.append(box, bar);
   root.append(overlay);
   const abort = new AbortController();
@@ -70,7 +70,7 @@
     try {
       const response = await api.runtime.sendMessage({ type: 'selection', selection });
       if (response?.error) showError(response.error);
-    } catch { showError('Capture failed. Open SnipRay and try again.'); }
+    } catch { showError('Capture failed. Open SkipCam and try again.'); }
   }
   cancel.onclick = close;
   full.onclick = () => finish({ rect: { x: 0, y: 0, ...originalView }, view: originalView });

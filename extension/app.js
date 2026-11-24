@@ -44,7 +44,7 @@ function page(title, ...nodes) {
 }
 async function send(type, data = {}) {
   const response = await api.runtime.sendMessage({ type, ...data });
-  if (!response || response.error) throw Error(response?.error ?? 'SnipRay could not complete the request.');
+  if (!response || response.error) throw Error(response?.error ?? 'SkipCam could not complete the request.');
   return response;
 }
 async function copy(text) {
@@ -67,7 +67,7 @@ function home() {
 }
 async function start() {
   if (!popup) {
-    status.textContent = 'Go to the page you want to scan and open SnipRay from the toolbar, or use the scan shortcut.';
+    status.textContent = 'Go to the page you want to scan and open SkipCam from the toolbar, or use the scan shortcut.';
     return;
   }
   await send('start');
@@ -191,7 +191,7 @@ function choices(initial) {
 }
 function download(blob, extension) {
   const url = URL.createObjectURL(blob);
-  element('a', null, { href: url, download: 'snipray-qr.' + extension }).click();
+  element('a', null, { href: url, download: 'skipcam-qr.' + extension }).click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 function png(canvas) {
@@ -265,7 +265,7 @@ async function history() {
   search.oninput = filter.onchange = draw;
   mount.append(element('p', 'History saves only eligible HTTPS site root addresses. Other content and URLs with paths, queries or fragments are skipped.', { className: 'subtle' }),
     label('Search history', search), label('Content type', filter), button('Clear all history', async () => {
-      if (confirm('Delete all SnipRay history from this browser?')) { items = (await send('store', { clear: true })).history; draw(); }
+      if (confirm('Delete all SkipCam history from this browser?')) { items = (await send('store', { clear: true })).history; draw(); }
     }), list);
   draw();
 }
@@ -284,11 +284,11 @@ async function preferences() {
       settings = (await send('store', { settings: { theme: theme.value, motion: motion.value, remember: remember.checked, days: Number(days.value), ...options.values() } })).settings;
       applyTheme();
       status.textContent = 'Settings saved.';
-    }, 'primary'), element('h2', 'About SnipRay'),
+    }, 'primary'), element('h2', 'About SkipCam'),
     element('p', 'QR processing happens on this device. No accounts, telemetry or upload service.'),
     element('p', 'Scan shortcut · Alt+Shift+Q. Your browser may allow remapping.'),
-    actions(link('GitHub ↗', 'https://github.com/asintha1a/snipray', 'button'),
-      link('Privacy policy ↗', 'https://github.com/asintha1a/snipray/blob/main/PRIVACY.md', 'button'),
+    actions(link('GitHub ↗', 'https://github.com/asintha1a/skipcam', 'button'),
+      link('Privacy policy ↗', 'https://github.com/asintha1a/skipcam/blob/main/PRIVACY.md', 'button'),
       link('Self Graphic Lab ↗', 'https://www.selfgraphic.tech/', 'button')));
 }
 

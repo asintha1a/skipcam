@@ -1,6 +1,6 @@
 # Third-party notices
 
-SnipRay carries forward code and Git history from [QR Snip](https://github.com/IsaacJoel06/qr-snip) by Isaac Joel Mithran under the MIT license. See [LICENSE](LICENSE).
+SkipCam includes components with the following authorship and license notices. The MIT-licensed source foundation is attributed in the README's Attribution and License section and in [LICENSE](LICENSE).
 
 | Component | Role | License |
 | --- | --- | --- |

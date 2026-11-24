@@ -1,12 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "SnipRay",
-  "short_name": "SnipRay",
-  "description": "Scan, generate and inspect QR codes locally in your browser.",
+  "name": "SkipCam — QR Scanner & Generator",
+  "short_name": "SkipCam",
+  "description": "Skip the camera. Scan, generate and inspect QR codes privately in your browser.",
   "permissions": ["activeTab", "scripting", "contextMenus", "storage"],
-  "action": {"default_title": "SnipRay", "default_popup": "app.html#popup"},
+  "action": {"default_title": "SkipCam", "default_popup": "app.html#popup"},
   "options_ui": {"page": "app.html#settings", "open_in_tab": true},
   "icons": {"16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png"},
-  "commands": {"scan-screen": {"suggested_key": {"default": "Alt+Shift+Q", "mac": "Alt+Shift+Q"}, "description": "Select a visible region with SnipRay"}},
+  "commands": {"scan-screen": {"suggested_key": {"default": "Alt+Shift+Q", "mac": "Alt+Shift+Q"}, "description": "Select a visible region with SkipCam"}},
   "content_security_policy": {"extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'; connect-src 'none'; worker-src 'self'; img-src 'self' data: blob:;"}
 }

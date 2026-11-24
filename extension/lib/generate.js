@@ -63,7 +63,7 @@ export function matrix(value, level = 'M') {
     Array.from({ length: qr.getModuleCount() }, (_, x) => qr.isDark(y, x)));
 }
 
-export function renderMatrix(code, { foreground = '#101312', background = '#ffffff', size = 512 } = {}) {
+export function renderMatrix(code, { foreground = '#111111', background = '#ffffff', size = 512 } = {}) {
   if (!/^#[a-f\d]{6}$/i.test(foreground) || !/^#[a-f\d]{6}$/i.test(background) || ![256, 512, 1024].includes(size)) throw Error('Choose valid colors and size.');
   const dimension = code.length + 8;
   const canvas = document.createElement('canvas');
