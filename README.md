@@ -19,7 +19,10 @@ SnipRay is an independently maintained, enhanced open-source derivative of [QR S
 
 ## Install for evaluation
 
-Download a browser ZIP from [GitHub Releases](https://github.com/asintha1a/snipray/releases/tag/v1.0.0-beta.1), extract it, then:
+Download a browser ZIP directly from the repository or visit the [beta release notes](https://github.com/asintha1a/snipray/releases/tag/v1.0.0-beta.1), extract it, then:
+
+- [Chromium beta ZIP](release-assets/v1.0.0-beta.1/snipray-chromium-v1.0.0-beta.1.zip)
+- [Firefox beta ZIP](release-assets/v1.0.0-beta.1/snipray-firefox-v1.0.0-beta.1.zip)
 
 - **Chrome, Edge, Brave:** open the browser's extensions page, enable Developer mode, choose **Load unpacked**, and select the extracted Chromium folder.
 - **Firefox 140+:** open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on**, then select the extracted Firefox `manifest.json`. Temporary installs are removed when Firefox closes. Permanent installation requires Mozilla signing; no store listing is currently published.
