@@ -35,10 +35,11 @@ async function website() {
   await Promise.all([
     build({ ...entry('site/demo.js', dir), format: 'esm' }),
     cp('assets/screenshots', dir + '/media', { recursive: true }),
-    ...['symbol.svg', 'social-preview.png', 'cover.png'].map(file => cp('assets/brand/' + file, dir + '/media/' + file)),
-    cp('notices', dir + '/notices', { recursive: true })
+    ...['symbol.svg', 'social-preview.png', 'cover.png'].map(file => cp('assets/brand/' + file, dir + '/media/' + file))
   ]);
-  const configured = process.env.SNIPRAY_SITE_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  await cp('notices', dir + '/notices', { recursive: true });
+  const vercelProduction = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  const configured = process.env.SNIPRAY_SITE_URL || (vercelProduction?.endsWith('.vercel.app') ? vercelProduction : 'https://snipray.vercel.app');
   const site = configured ? new URL(configured.includes('://') ? configured : 'https://' + configured).origin : null;
   const html = await readFile(dir + '/index.html', 'utf8');
   await writeFile(dir + '/index.html', html.replace('<!-- deploy-metadata -->', site ?
