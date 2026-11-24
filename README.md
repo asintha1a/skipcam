@@ -55,10 +55,8 @@ npm run build
 
 Packages are generated in `dist/`. See [TESTING.md](TESTING.md) for the current verification checklist. The landing page and its local demos are in `site/`.
 
-## Attribution and license
+## License
 
-SkipCam is maintained by [Self Graphic Lab](https://www.selfgraphic.tech/). It continues the MIT-licensed project [QR Snip](https://github.com/IsaacJoel06/qr-snip), originally authored by Isaac Joel Mithran. The upstream copyright notice and complete MIT terms are preserved in [LICENSE](LICENSE); this repository also identifies Self Graphic Lab's applicable modifications. Third-party component notices are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+SkipCam is free and open source under the [MIT License](LICENSE). See [third-party notices](THIRD_PARTY_NOTICES.md) for component credits.
 
-The existing commit history is preserved. Upstream contributors therefore remain visible in GitHub's historical **Contributors** display, which reflects authorship of those commits. No historical commits have been reassigned or rewritten.
-
-SkipCam is distributed under the MIT License. Maintained by [Self Graphic Lab](https://www.selfgraphic.tech/) · [contact@selfgraphic.tech](mailto:contact@selfgraphic.tech).
+Maintained by [Self Graphic Lab](https://www.selfgraphic.tech/) · [contact@selfgraphic.tech](mailto:contact@selfgraphic.tech).
