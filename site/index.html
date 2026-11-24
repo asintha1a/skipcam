@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SnipRay | Scan, generate and inspect QR codes in your browser</title>
+<meta name="description" content="SnipRay is a free, privacy-first browser extension to scan, generate and inspect QR codes locally. Open source from Self Graphic Lab.">
+<meta property="og:type" content="website"><meta property="og:title" content="SnipRay · Your browser is now your QR scanner."><meta property="og:description" content="Scan, generate and inspect QR codes directly in your browser.">
+<meta name="theme-color" content="#101312"><!-- deploy-metadata -->
+<link rel="icon" type="image/svg+xml" href="media/symbol.svg"><link rel="stylesheet" href="site.css"><script type="module" src="demo.js"></script>
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="wrap top"><a class="brand" href="#"><img src="media/symbol.svg" alt="" width="35" height="35"><span>snipray.</span></a><nav aria-label="Main"><a href="#demo">Try it</a><a href="#install">Install</a><a href="https://github.com/asintha1a/snipray">GitHub ↗</a></nav></header>
+<main id="main">
+<section class="wrap hero"><div><p class="overline">SELF GRAPHIC LAB / BROWSER TOOLS</p><h1>Your browser is now your QR scanner.</h1><p class="intro">Scan, generate and inspect QR codes directly in your browser. No phone. No uploads. No unnecessary steps.</p>
+<div class="buttons"><a class="button primary" href="#install">Get SnipRay ↓</a><a class="button" href="https://github.com/asintha1a/snipray">View on GitHub ↗</a></div>
+<p class="platforms">Chrome · Edge · Brave · Firefox</p></div>
+<figure class="preview"><img src="media/screen-scan.png" alt="Actual SnipRay selection overlay highlighting a QR code on a sample webpage" width="1000" height="660"><figcaption>SnipRay in Chromium</figcaption></figure></section>
+<section class="wrap section" id="demo"><p class="overline">TRY SNIPRAY</p><h2>From pixels to plain text.</h2><p>Decode a sample, or make your own QR code. Both demos run in this tab.</p>
+<div class="demo-grid"><article><h3>Scan a sample</h3><label for="sample">Sample content</label><select id="sample"><option value="https://example.org/">Website address</option><option value="See it. Snip it. Scan it.">Plain text</option><option value="http://example.org/snipray">Unencrypted link</option></select><canvas id="sample-code" role="img" aria-label="Sample QR code" width="256" height="256"></canvas>
+<button class="button primary" id="scan">Scan sample</button><p id="scan-status" class="result" aria-live="polite"></p></article>
+<article><h3>Generate a QR code</h3><form id="generate"><label for="demo-text">Text or URL</label><input id="demo-text" maxlength="500" value="https://example.org/" required><canvas id="generated-code" role="img" aria-label="Generated QR code" width="256" height="256"></canvas><div class="buttons"><button class="button primary">Generate code</button><button class="button" type="button" id="download">Download PNG</button></div><p id="generate-status" class="result" aria-live="polite"></p></form></article></div></section>
+<section class="wrap section" id="features"><p class="overline">PRODUCT</p><h2>See it. Snip it. Scan it.</h2>
+<div class="features"><article><h3>Scan what’s already visible</h3><p>Drag a region of the active tab, scan a visible image from its menu, or drop a local file into SnipRay.</p></article><article><h3>Know where a link goes</h3><p>See the full destination and offline warnings for shorteners, embedded credentials, HTTP and unusual hosts.</p></article><article><h3>Make a code worth sharing</h3><p>Create QR codes for URLs, text, messages, contacts and Wi-Fi. Choose your colors and export PNG or SVG.</p></article></div>
+<div class="shots"><figure><img src="media/results.png" alt="SnipRay results showing a decoded URL and explicit copy and open actions" width="960" height="650" loading="lazy"><figcaption>Inspect a decoded destination</figcaption></figure><figure><img src="media/generator.png" alt="SnipRay generator with QR preview and PNG, SVG and clipboard actions" width="960" height="850" loading="lazy"><figcaption>Generate and export locally</figcaption></figure></div></section>
+<section class="wrap section privacy"><div><p class="overline">PRIVACY</p><h2>Your pixels stay yours.</h2></div><div><p>SnipRay processes images and QR content on your device. Screenshots are kept briefly in memory. Optional history is off by default and saves only eligible HTTPS site root addresses.</p><a href="https://github.com/asintha1a/snipray/blob/main/PRIVACY.md">Read the privacy policy ↗</a></div></section>
+<section class="wrap section" id="install"><p class="overline">INSTALL</p><h2>Get SnipRay</h2><p>Download v1.0.0 from GitHub Releases.</p><div class="install-grid">
+<article><h3>Chrome, Edge and Brave</h3><a class="button primary" href="https://github.com/asintha1a/snipray/releases/download/v1.0.0/snipray-chromium-v1.0.0.zip">Download Chromium ZIP ↓</a><ol><li>Extract the ZIP.</li><li>Open your browser’s Extensions page and enable Developer mode.</li><li>Choose <strong>Load unpacked</strong> and select the extracted folder.</li></ol></article>
+<article><h3>Firefox 140+</h3><a class="button" href="https://github.com/asintha1a/snipray/releases/download/v1.0.0/snipray-firefox-v1.0.0.zip">Download Firefox ZIP ↓</a><ol><li>Open <code>about:debugging#/runtime/this-firefox</code>.</li><li>Choose <strong>Load Temporary Add-on</strong> and select the ZIP.</li><li>Reload after restarting Firefox. Permanent installation requires signing.</li></ol></article></div></section>
+<section class="wrap section faq"><p class="overline">FAQ</p><h2>Good to know</h2>
+<details><summary>Does SnipRay scan the whole desktop?</summary><p>Screen scan captures the visible active browser tab. For codes elsewhere, upload or paste a screenshot.</p></details>
+<details><summary>Does a URL warning check the destination online?</summary><p>Warnings come from offline heuristics. SnipRay does not check live phishing or malware reputation and never opens a decoded link automatically.</p></details>
+<details><summary>Can I scan multiple QR codes?</summary><p>SnipRay can recover multiple distinct codes when they are spaced apart. If a code is missed, select it by itself.</p></details>
+<details><summary>Where did SnipRay come from?</summary><p>Self Graphic Lab independently maintains SnipRay, an enhanced MIT-licensed derivative of <a href="https://github.com/IsaacJoel06/qr-snip">QR Snip by Isaac Joel Mithran</a>.</p></details></section>
+</main><footer class="wrap bottom"><a class="brand" href="#"><img src="media/symbol.svg" alt="" width="32" height="32"><span>snipray.</span></a><a href="https://www.selfgraphic.tech/">by Self Graphic Lab ↗</a><a href="https://github.com/asintha1a/snipray">Source code ↗</a></footer>
+</body></html>

@@ -1,6 +1,5 @@
 # Dependencies
 node_modules/
-package-lock.json
 
 # Builds & Archives
 *.zip
@@ -23,3 +22,6 @@ scratch/
 *-test-*.png
 make-test*.js
 web-ext-artifacts/
+
+.vercel/
+playwright-report/

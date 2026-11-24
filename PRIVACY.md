@@ -1,27 +1,18 @@
-# Privacy Policy for QR Snip
+# SnipRay privacy policy
 
-**Effective Date:** November 2026
+Effective November 24, 2026. SnipRay is maintained by [Self Graphic Lab](https://www.selfgraphic.tech/).
 
-QR Snip is engineered with privacy as a foundational principle. The extension operates completely client-side in your browser.
+SnipRay has no telemetry, advertising, account, synchronization or backend. Image scanning, cropping, QR generation and URL inspection run on the device. Context-menu scanning reads visible tab pixels. It does not fetch the source image again. A tab screenshot is held in memory long enough to pass it to the result window and stays out of browser extension storage. Clipboard access follows an explicit read, paste or copy action. If you open a link, your browser navigates to that destination and its normal network behavior applies.
 
-## 1. No Data Collection or Transmission
-- **Zero Telemetry:** QR Snip does not collect, record, track, or analyze any user activity or browsing habits.
-- **Zero Remote Calls:** No analytics, trackers, external scripts, or remote APIs are embedded or contacted.
-- **100% Offline Processing:** All QR code scanning and image cropping occur entirely in memory within your local browser session using the bundled `jsQR` library.
+Optional history is disabled by default. When enabled it stores eligible HTTPS site root addresses and timestamps locally. QR text, Wi-Fi passwords, contact details, messages and URLs with credentials, paths, queries, fragments or warnings are skipped. Clear individual entries, clear history, set retention or turn it off in Settings. Expired entries are removed when SnipRay next accesses history. Settings and history use extension-local storage. Removing the extension clears its storage according to the browser's uninstall behavior.
 
-## 2. Permissions Explained
-QR Snip requests the minimum permissions required to perform its functions:
+| Permission | Purpose |
+| --- | --- |
+| activeTab | Temporary access to the selected tab after your action |
+| scripting | Insert the selection overlay or locate the selected image |
+| contextMenus | Display the image scan command |
+| storage | Store local preferences and optional history |
 
-- `activeTab`: Allows taking a temporary screenshot of the active visible tab strictly when you click the extension icon or press the shortcut (`Alt+Shift+Q`). No access to your browser history or other tabs.
-- `scripting`: Dynamically loads the selection overlay and local decoding script into the active tab when requested.
-- `contextMenus`: Adds the "Scan QR in this image" option to your right-click menu when clicking on web images.
-- `notifications`: Alerts you if you attempt to use the tool on restricted browser pages (such as `chrome://` settings or the Chrome Web Store) where extensions cannot run.
+The landing page demos run locally in the page and do not send QR data to the host. The website host receives ordinary requests for the page and its assets.
 
-## 3. Link Handling & Safety
-- Decoded URLs are never automatically opened or prefetched in the background.
-- Links only open when you explicitly click the "Open link" button.
-- Dangerous schemes (`javascript:`, `data:`) are permanently blocked from opening to protect your device.
-
-## 4. Updates & Inquiries
-For questions or source code verification, visit the project repository on GitHub:
-https://github.com/IsaacJoel06/qr-snip
+Questions can be sent to contact@selfgraphic.tech.

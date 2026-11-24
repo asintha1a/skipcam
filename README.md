@@ -1,114 +1,48 @@
-# QR Snip
+# SnipRay
 
-A fast, lightweight, privacy-focused WebExtension (Manifest V3) that scans any QR code visible on your screen or inside images, with built-in security screening and zero external network calls.
+**See it. Snip it. Scan it.** A privacy-first browser utility to scan, generate, and inspect QR codes without leaving your browser.
 
-**Supported Browsers:** Google Chrome, Microsoft Edge, and Mozilla Firefox 140+.
+SnipRay is an independently maintained, enhanced open-source derivative of [QR Snip](https://github.com/IsaacJoel06/qr-snip) by Isaac Joel Mithran. Self Graphic Lab preserves the upstream MIT license and attribution. SnipRay is not the original upstream project.
 
----
+## Features
 
-## Key Features
+- Scan a region of the active tab, uploaded or pasted images, and images from the context menu.
+- Generate QR codes for URLs, text, email, telephone, SMS, Wi-Fi, and contact details; export PNG or SVG.
+- Inspect decoded content locally, with offline URL heuristics and explicit open-link actions.
+- Optional local history, disabled by default; sensitive content is excluded.
+- Light and dark themes, keyboard shortcut (Alt+Shift+Q), and multiple QR detection when codes are spatially separable.
+- No analytics, external processing, account, or backend.
 
-- **Viewport Snipping:** Capture and scan any QR code on screen using the toolbar icon or shortcut <kbd>Alt+Shift+Q</kbd>.
-- **Touch, Pen & Stylus Ready:** Full pointer-event support with pointer capture, scroll-lock (`touch-action: none`), on-screen Cancel button, and accessible &ge;44px tap targets.
-- **Right-Click Image Scan:** Right-click any image on the web and select **"Scan QR in this image"** for instant decoding without dragging.
-- **Cross-Browser Engine:** Native WebExtension compatibility across Chromium (Chrome, Edge, Brave) and Firefox.
-- **High-DPI & Zoom Resilient:** Automatically scales pixel coordinates to match `devicePixelRatio` and browser zoom settings.
-- **100% Offline & Private:** Uses bundled `jsQR.min.js`. Never contacts remote servers, tracks analytics, or makes network requests.
-- **Security Warning Banner:** Flags URLs using unencrypted `http://`, internationalized/punycode lookalike domains, or URL shorteners (`bit.ly`, `tinyurl.com`, `t.co`, etc.) with a clear caution notice before opening.
-- **Dangerous Scheme Blocking:** Completely blocks `javascript:` and `data:` URLs from opening.
-- **Dark & Light Mode:** Seamlessly matches your operating system theme, with an interactive toggle switch, safely persisted in storage.
-- **Restricted Page Warnings:** Notifies you with friendly native alerts when triggered on restricted pages (e.g., `chrome://`, `about:`, Chrome Web Store, or Firefox Add-ons).
-- **Safe Link Handling:** Links are never opened automatically. Opening is strictly user-triggered.
+## Status
 
----
+**v1.0.0-beta.1.** Automated Node tests and production builds pass. Full interactive browser testing is pending. This prerelease is for evaluation and is not a claim of stable browser compatibility. No Chrome Web Store or Firefox Add-ons listing is available.
 
-## Screenshots
+## Install for evaluation
 
-<!-- Add your screenshots here after capturing -->
-<div align="center">
-  <img width="1907" height="1382" alt="image" src="https://github.com/user-attachments/assets/241b7450-ccb2-4e38-a2db-ed5fd9c50bca" />
-  <img width="1865" height="1384" alt="image" src="https://github.com/user-attachments/assets/c2827034-fb91-40c0-ba80-a84148e6a049" />
-  <img width="1900" height="1377" alt="image" src="https://github.com/user-attachments/assets/8c62ace0-953f-459c-b72d-aa367ad5d1e0" />
+Download a browser ZIP from [GitHub Releases](https://github.com/asintha1a/snipray/releases/tag/v1.0.0-beta.1), extract it, then:
 
+- **Chrome, Edge, Brave:** open the browser's extensions page, enable Developer mode, choose **Load unpacked**, and select the extracted Chromium folder.
+- **Firefox 140+:** open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on**, then select the extracted Firefox `manifest.json`. Temporary installs are removed when Firefox closes. Permanent installation requires Mozilla signing; no store listing is currently published.
 
+## Development
 
-</div>
+Requires Node.js 22 or newer.
 
----
+```sh
+npm ci
+npm test
+npm run lint
+npm run build
+```
 
-## Installation
+Build output is in `dist/`. See [TESTING.md](TESTING.md) for the manual browser checklist. The separate Vercel landing page is in `site/`.
 
-### Google Chrome / Microsoft Edge
-1. Clone or download this repository:
-   ```bash
-   git clone https://github.com/IsaacJoel06/qr-snip.git
-   ```
-2. Navigate to `chrome://extensions/` (or `edge://extensions/`).
-3. Toggle on **Developer mode** in the top-right corner.
-4. Click **Load unpacked** and select the `qr-snip` project folder.
-5. Pin **QR Snip** to your browser toolbar.
+## Privacy and security
 
-> *Note for Chrome users:* Chrome may display a minor developer warning: `"Unrecognized manifest key 'scripts'"`. This is completely safe and occurs because the manifest simultaneously provides a `scripts` fallback for Firefox MV3. Chrome uses `service_worker` and runs normally.
+QR decoding and generation happen locally. URL warnings are offline heuristics, not a malware reputation service and cannot guarantee safety. SnipRay never opens a decoded destination automatically. See [PRIVACY.md](PRIVACY.md) and [SECURITY.md](SECURITY.md).
 
----
+## Attribution and license
 
-### Mozilla Firefox (140+)
-1. Open Firefox and go to:
-   ```text
-   about:debugging#/runtime/this-firefox
-   ```
-2. Click **Load Temporary Add-on...**
-3. Select [manifest.json](manifest.json) inside the `qr-snip` folder.
-4. Pin **QR Snip** to your Firefox toolbar.
+SnipRay is an independently maintained derivative of [QR Snip](https://github.com/IsaacJoel06/qr-snip). Upstream Git history and the complete original MIT notice, including Isaac Joel Mithran's copyright, are preserved. New SnipRay modifications are copyright Self Graphic Lab where applicable. Third-party notices are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Distributed under the MIT License.
 
-> *Note for Firefox users:* Temporary add-ons in Firefox remain loaded for your active browser session and are automatically unloaded when Firefox is fully closed or restarted. To keep it permanently installed, the add-on can be self-signed via [AMO](https://addons.mozilla.org/).
-
----
-
-## Usage
-
-| Action | Shortcut / Trigger | Description |
-| :--- | :--- | :--- |
-| **Start Snip** | <kbd>Alt+Shift+Q</kbd> or click extension icon | Dims the page; drag a rectangle over any QR code with mouse, touch, or pen. |
-| **Scan Image** | Right-click image &rarr; **Scan QR in this image** | Scans an image element directly without selecting an area. |
-| **Cancel Snip** | <kbd>Esc</kbd> or tap on-screen **Cancel** button | Cancels current selection (ideal for touchscreen devices without an Esc key). |
-| **Close Popup** | <kbd>Esc</kbd> or click ✕ | Dismisses the result toast notification. |
-| **Toggle Theme** | Click theme button in toast header | Switches between System Auto, Dark, and Light themes. |
-
----
-
-## Testing
-
-A complete testing guide with an interactive checklist is available in [TESTING.md](TESTING.md). Open [test.html](test.html) directly in any browser to verify all features.
-
----
-## Known issues
-
-- **Firefox for Android / mobile mode:** scanning is unreliable right now. On
-  some pages the selected area doesn't match what gets scanned, and some QR
-  codes aren't recognized. Chrome-based browsers on desktop work best. I'm currently
-  working on a fix.
-  
-## Privacy & Security
-
-- **Zero Data Collection:** QR Snip does not track, collect, or transmit any user information.
-- **No Remote Dependencies:** All scanning occurs strictly within your browser's memory using bundled local scripts.
-- **Minimal Permissions:** Uses only `activeTab`, `scripting`, `contextMenus`, and `notifications`. No host permissions (`<all_urls>`) requested.
-- Read our full [PRIVACY.md](PRIVACY.md) for details.
-
----
-
-## Development & Contribution
-
-1. Fork the repository and create your feature branch:
-   ```bash
-   git checkout -b feature/my-enhancement
-   ```
-2. Make your changes and test across both Chrome and Firefox using `test.html` and `TESTING.md`.
-3. Commit your changes and open a Pull Request.
-
----
-
-## License
-
-Distributed under the [MIT License](LICENSE). Copyright &copy; 2026 Isaac Joel Mithran.
+Maintained by [Self Graphic Lab](https://www.selfgraphic.tech/) · [contact@selfgraphic.tech](mailto:contact@selfgraphic.tech).
