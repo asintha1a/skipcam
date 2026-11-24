@@ -4,7 +4,7 @@ Updated: 2026-11-24. This report distinguishes verified outcomes from pending br
 
 ## Published source and packages
 
-- **VERIFIED — GitHub repository:** [asintha1a/snipray](https://github.com/asintha1a/snipray), public. The published implementation is in commit `de89800bcd9feb66a4f597ddf4d49b494db0a816`; the beta archives and delivery report follow on `main`.
+- **VERIFIED — GitHub repository:** [asintha1a/snipray](https://github.com/asintha1a/snipray), public. The source and production metadata fix are published on `main` (metadata fix commit `e4ef7d7fe7db473eccf5475cf4e34f060c10297d`); package archives and delivery records follow in later commits.
 - **VERIFIED — Attribution:** SnipRay is an independently maintained, enhanced derivative of [QR Snip](https://github.com/IsaacJoel06/qr-snip). Upstream history, Isaac Joel Mithran's MIT notice and third-party notices are preserved.
 - **VERIFIED — Beta release:** [v1.0.0-beta.1](https://github.com/asintha1a/snipray/releases/tag/v1.0.0-beta.1) exists as a prerelease. It is not represented as a stable or fully browser-verified release.
 - **BLOCKED — Release attachments:** GitHub's release asset upload host could not resolve from the publishing environment. The tested packages are committed in the public repository and direct download URLs below return HTTP 200.
@@ -23,7 +23,7 @@ Updated: 2026-11-24. This report distinguishes verified outcomes from pending br
 ## Tests and browser verification
 
 - **VERIFIED — Automated extension tests:** `npm test` passed 10/10 tests in the resumed run.
-- **VERIFIED — Lint and production builds:** `npm run lint` and `npm run build` completed successfully; Chromium, Firefox, and site build outputs were produced. The clean-clone site build was rerun with the tracked screenshot directory and passed.
+- **VERIFIED — Lint and production builds:** `npm run lint` and `npm run build` completed successfully; Chromium, Firefox, and site build outputs were produced. The site build passed with the tracked screenshots directory.
 - **VERIFIED — Package inspection:** Both ZIPs contain the expected manifest and extension files; SHA-256 checksums are above.
 - **BLOCKED — Interactive extension testing:** Chrome is installed. A separate temporary Chrome profile launched without using the personal profile, but Chrome did not expose the extension service worker to the automation harness, so popup and extension interactions could not be verified. No Firefox or Brave executable was found. No personal browser session was closed or inspected.
 - **BLOCKED — Product screenshots:** No real extension screenshots were captured. The site and case study use existing promotional art and label it as artwork, not as a product screenshot.
