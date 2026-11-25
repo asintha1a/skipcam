@@ -1,6 +1,8 @@
 const CACHE = 'skipcam-web-__CACHE_VERSION__';
 const APP_FILES = [
   '/', '/scan/', '/generate/', '/history/', '/extension/',
+  '/scan-qr-code-from-image/', '/scan-qr-code-without-phone/', '/wifi-qr-code-generator/',
+  '/guides/why-a-qr-code-will-not-scan/', '/about/', '/privacy/', '/security/', '/help/',
   '/site.css', '/app.js', '/scan-worker.js', '/manifest.webmanifest',
   '/media/favicon.svg', '/media/favicon.png', '/media/symbol.svg',
   '/media/app-icon-512.png', '/media/app-icon-1024.png',

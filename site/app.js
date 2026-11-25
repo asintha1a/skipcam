@@ -1,12 +1,14 @@
 import { scanImage, validateImage } from '../extension/lib/decode.js';
 import { contextualValue, historyValue, inspect } from '../extension/lib/content-type.js';
 import { fields, matrix, payload, renderMatrix } from '../extension/lib/generate.js';
+import routeRegistry from './routes.json';
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const pane = $('#tool-pane');
 const status = $('#app-status');
 const historyKey = 'skipcam.web.history.v1';
 const settingsKey = 'skipcam.web.settings.v1';
+const routes = new Map(routeRegistry.map(route => [route.path.replace(/\/$/, '') || '/', route]));
 const defaultSettings = { remember: false, days: 30, foreground: '#111111', background: '#ffffff', size: 512, level: 'M', quietZone: 4 };
 let settings = loadSettings();
 let worker;
@@ -78,40 +80,14 @@ function stopCapture() {
   stream = undefined;
 }
 function updateActiveTab() {
-  const active = currentPath === '/generate' ? 'generate' : currentPath === '/history' ? 'history' : 'scan';
-  for (const tab of document.querySelectorAll('[data-tab]')) {
-    const selected = tab.dataset.tab === active;
-    tab.setAttribute('aria-selected', String(selected));
-    if (selected) tab.setAttribute('aria-current', 'page');
-    else tab.removeAttribute('aria-current');
+  const route = routes.get(currentPath);
+  const active = route?.tool === 'generate' ? 'generate' : route?.tool === 'history' ? 'history' : route?.tool === 'scan' ? 'scan' : '';
+  for (const link of document.querySelectorAll('[data-tab]')) {
+    if (link.dataset.tab === active) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
   }
-  document.title = ({
-    '/scan': 'QR Code Scanner Online | SkipCam',
-    '/generate': 'Free QR Code Generator Online | SkipCam',
-    '/history': 'Private QR Scan History | SkipCam',
-    '/extension': 'SkipCam Browser Extension | Skip the camera'
-  })[currentPath] || 'SkipCam: Skip the camera. Scan anyway.';
+  if (route) document.title = route.title;
 }
-function navigate(path) {
-  if (!['/', '/scan', '/generate', '/history', '/extension'].includes(path)) return;
-  if (routePath() !== path) history.pushState({}, '', path);
-  currentPath = path;
-  cleanup();
-  setStatus('');
-  updateActiveTab();
-  if (path === '/generate') renderGenerator();
-  else if (path === '/history') renderHistory();
-  else if (path === '/extension') renderExtension();
-  else renderScanner();
-  $('#tool').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
-}
-document.addEventListener('click', event => {
-  const anchor = event.target.closest('a[data-route]');
-  if (!anchor || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-  event.preventDefault();
-  navigate(routePath(new URL(anchor.href).pathname));
-});
-window.addEventListener('popstate', () => navigate(routePath()));
 
 async function decodeFile(file, selection) {
   validateImage(file);
@@ -368,9 +344,9 @@ function colorContrast(foreground, background) {
   const a = luminance(foreground), b = luminance(background);
   return (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
 }
-function renderGenerator() {
+function renderGenerator(defaultType = 'url') {
   const form = make('form', undefined, { className: 'generator' });
-  const contentType = select([['url', 'Website URL'], ['text', 'Plain text'], ['wifi', 'Wi-Fi'], ['email', 'Email'], ['phone', 'Telephone'], ['sms', 'SMS'], ['contact', 'Contact card']], 'url', { id: 'generator-type' });
+  const contentType = select([['url', 'Website URL'], ['text', 'Plain text'], ['wifi', 'Wi-Fi'], ['email', 'Email'], ['phone', 'Telephone'], ['sms', 'SMS'], ['contact', 'Contact card']], defaultType, { id: 'generator-type' });
   const fieldsGroup = make('div', undefined, { className: 'generator-fields' });
   const options = make('div', undefined, { className: 'generator-options' });
   const foreground = make('input', undefined, { type: 'color', value: settings.foreground, id: 'qr-foreground' });
@@ -508,28 +484,34 @@ function renderExtension() {
   pane.replaceChildren(panel);
 }
 
-$('#install-app').addEventListener('click', async () => {
+$('#install-app')?.addEventListener('click', async () => {
   if (!installPrompt) return;
   installPrompt.prompt();
   await installPrompt.userChoice;
   installPrompt = undefined;
-  $('#install-app').hidden = true;
+  const button = $('#install-app');
+  if (button) button.hidden = true;
 });
 window.addEventListener('beforeinstallprompt', event => {
+  const button = $('#install-app');
+  if (!button) return;
   event.preventDefault();
   installPrompt = event;
-  $('#install-app').hidden = false;
+  button.hidden = false;
 });
-window.addEventListener('appinstalled', () => { $('#install-app').hidden = true; setStatus('SkipCam was installed.'); });
+window.addEventListener('appinstalled', () => { const button = $('#install-app'); if (button) button.hidden = true; if (status) setStatus('SkipCam was installed.'); });
 if ('serviceWorker' in navigator && isSecureContext) {
   navigator.serviceWorker.register('/service-worker.js').then(registration => {
-    $('#offline-status').textContent = 'Offline app available after this visit';
+    if ($('#offline-status')) $('#offline-status').textContent = 'Offline app available after this visit';
     registration.update().catch(() => {});
-  }).catch(() => { $('#offline-status').textContent = 'Local processing · offline install unavailable'; });
+  }).catch(() => { if ($('#offline-status')) $('#offline-status').textContent = 'Local processing · offline install unavailable'; });
 }
 
 updateActiveTab();
-if (currentPath === '/generate') renderGenerator();
-else if (currentPath === '/history') renderHistory();
-else if (currentPath === '/extension') renderExtension();
-else renderScanner();
+const activeRoute = routes.get(currentPath);
+if ($('#tool-pane')) {
+  if (activeRoute?.tool === 'generate') renderGenerator(activeRoute.generatorType || 'url');
+  else if (activeRoute?.tool === 'history') renderHistory();
+  else if (activeRoute?.tool === 'extension') renderExtension();
+  else if (activeRoute?.tool === 'scan') renderScanner();
+}

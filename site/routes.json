@@ -1,0 +1,206 @@
+[
+  {
+    "path": "/",
+    "title": "Free Online QR Code Scanner & Generator | SkipCam",
+    "description": "Scan QR codes from images, screenshots, or your screen without a phone or extension. Generate QR codes for free with private, local processing.",
+    "h1": "Scan QR Codes Online Without Your Phone",
+    "lead": "Skip the camera. Scan anyway. Read a code from an image, paste a screenshot, or capture one frame from your screen.",
+    "tool": "scan",
+    "indexable": true,
+    "blocks": [
+      {"heading":"What is SkipCam?","paragraphs":["SkipCam is a free QR scanner and generator for your browser. The web app reads QR codes from images, screenshots, and a frame you choose to share. It also creates codes for links, text, Wi-Fi, email, phone, SMS, and contact cards.","You can use the web app without an account or extension. The optional browser extension adds direct selection from a webpage and a right-click action for images."]},
+      {"heading":"How to scan a QR code without a phone","steps":["Choose an image, drop it into the scanner, or paste a screenshot with Ctrl+V or Command+V.","If the code is small, enable crop selection and draw around it.","For a code visible on your screen, choose Scan screen and select a tab, window, or display in the browser prompt.","Review the decoded content and destination. Choose Open destination only if you want to visit it."]},
+      {"heading":"Private, local processing","paragraphs":["QR decoding, QR generation, content classification, and URL checks run in the browser. SkipCam does not upload the image or decoded value. Screen capture starts only after you choose Scan screen, and the stream stops after a still frame is captured.","History is optional and off by default. Eligible public HTTPS homepages can be saved in this browser. Wi-Fi credentials, URL paths, query strings, and other sensitive payloads are not saved automatically."]},
+      {"heading":"What the URL check can and cannot tell you","paragraphs":["SkipCam displays the decoded destination and uses offline checks to point out patterns such as unencrypted HTTP, URL shorteners, internationalized hostnames, or embedded credentials. It does not query a live phishing or malware service and cannot guarantee a link is safe. A link never opens automatically."]}
+    ],
+    "faqs": [
+      {"question":"Do I need the SkipCam extension?","answer":"No. The web app scans images, pasted screenshots, and a screen frame you choose to share. The extension adds direct webpage-region scanning and image context-menu actions."},
+      {"question":"Does SkipCam upload my QR image?","answer":"No. Image decoding and QR generation run locally in your browser. Screen capture also stays in the tab and is not recorded or sent to a server."},
+      {"question":"Can SkipCam tell me whether a QR link is safe?","answer":"No. It shows the destination and offline warning signals, but it does not check live reputation data or guarantee safety."}
+    ]
+  },
+  {
+    "path": "/scan/",
+    "title": "Free QR Code Scanner Online | SkipCam",
+    "description": "Scan a QR code from an image, screenshot, or selected screen frame. Decode locally in your browser with no image uploads.",
+    "h1": "Scan a QR Code from an Image or Screen",
+    "lead": "Choose an image, paste a screenshot, or use your browser's screen-sharing prompt. See the decoded result before opening anything.",
+    "tool": "scan",
+    "indexable": true,
+    "blocks": [
+      {"heading":"Scan from an image or screenshot","steps":["Choose an image or drag it into the scan area. PNG, JPG, JPEG, WebP, GIF, BMP, and AVIF images are supported by the current web app.","To scan a screenshot, copy it and paste with Ctrl+V or Command+V, or choose Paste image.","If the code takes up only part of the image, turn on crop selection and draw a rectangle around it.","Choose Decode image. SkipCam shows the content type, decoded data, and any available destination warnings."]},
+      {"heading":"Scan a code on your screen","paragraphs":["Choose Scan screen to open the browser's native sharing prompt. Pick a tab, window, or display where the browser offers that choice. SkipCam captures one still frame, stops the screen-sharing stream, and then scans the frame locally. If your browser does not support screen capture, upload or paste a screenshot instead."]},
+      {"heading":"Review before opening","paragraphs":["A website QR code is shown as a full destination URL. SkipCam may flag HTTP, shorteners, internationalized domain names, or embedded credentials. These are offline heuristics, not a live security reputation service. Open a destination only with the explicit button."]}
+    ],
+    "faqs": [
+      {"question":"Can I paste a screenshot directly?","answer":"Yes. Click the scan area and paste with Ctrl+V or Command+V, or choose Paste image for an explicit clipboard read. SkipCam does not monitor the clipboard in the background."},
+      {"question":"What happens to a screen capture?","answer":"After you choose a source in the browser's sharing prompt, SkipCam captures one frame. It stops the media tracks before showing the image for crop or decoding. The frame is not uploaded or stored by the app."}
+    ]
+  },
+  {
+    "path": "/generate/",
+    "title": "Free Online QR Code Generator | SkipCam",
+    "description": "Create QR codes for URLs, text, Wi-Fi, email, phone, SMS, and contact cards. Customize colors and export PNG or SVG locally.",
+    "h1": "Create a QR Code for Free",
+    "lead": "Enter the content, check the preview, then download a PNG or SVG. QR generation runs locally in your browser.",
+    "tool": "generate",
+    "indexable": true,
+    "generatorType": "url",
+    "blocks": [
+      {"heading":"Choose what the QR code contains","items":["Website URL: encode a link and preview its destination before sharing.","Plain text: put a short message or other text in the code.","Wi-Fi: encode a network name, password, and security type for a compatible scanner.","Email: prepare a recipient and optional subject or message.","Telephone and SMS: encode a number or a text-message draft. SkipCam does not place calls or send messages.","Contact card: encode the contact fields supported by the generator."]},
+      {"heading":"Set the appearance and export","paragraphs":["Adjust foreground and background colors, image dimensions, error correction, and the quiet-zone width. Keep strong contrast and leave clear space around the code. Scan the preview before printing or sharing a customized design.","PNG is a raster image. SVG is a vector file that can be scaled for print. Copy PNG is available in browsers that support writing images to the clipboard."]},
+      {"heading":"Static QR codes and privacy","paragraphs":["SkipCam writes the selected content into the QR code itself. It does not create a tracking redirect or require an account. If the code contains a Wi-Fi password or personal contact details, anyone who scans or receives the image can read that information. Keep it private when needed."]}
+    ],
+    "faqs": [
+      {"question":"Does a SkipCam QR code expire?","answer":"The generated image contains the content you entered and does not depend on a SkipCam redirect service. A website link can still stop working if the website changes or goes offline."},
+      {"question":"Can I generate a Wi-Fi QR code?","answer":"Yes. Select Wi-Fi in the generator or open the dedicated Wi-Fi QR generator. The network name and password are encoded in the resulting image, so share it only with people you trust."}
+    ]
+  },
+  {
+    "path": "/history/",
+    "title": "Local QR Scan History | SkipCam",
+    "description": "View eligible QR scans saved in this browser. History is optional, local, and disabled by default.",
+    "h1": "Your QR Scan History",
+    "lead": "History is stored in this browser only and starts turned off.",
+    "tool": "history",
+    "indexable": false,
+    "blocks": [
+      {"heading":"History stays in this browser","paragraphs":["SkipCam history is optional and disabled by default. When enabled, the app stores only eligible public HTTPS homepage URLs in this browser's local storage. It excludes Wi-Fi credentials, URL paths, query strings, and other sensitive QR payloads.","Search or clear saved entries from the History tab. Clearing or disabling history removes the stored entries. This history is not synchronized with the browser extension."]}
+    ]
+  },
+  {
+    "path": "/extension/",
+    "title": "SkipCam Browser Extension | Scan a Webpage QR",
+    "description": "The free SkipCam browser extension adds webpage-region scanning, image context-menu actions, and a keyboard shortcut.",
+    "h1": "Add QR Scanning to Your Browser",
+    "lead": "The web app works without installation. The extension adds direct webpage selection and image actions.",
+    "tool": "extension",
+    "indexable": true,
+    "blocks": [
+      {"heading":"What the extension adds","items":["Select a visible webpage region and scan QR codes in it.","Right-click an image to send it to the local decoder.","Use a keyboard shortcut to start a scan on supported pages.","Generate and inspect QR codes in the extension interface."]},
+      {"heading":"Browser support and installation","paragraphs":["SkipCam builds separate Manifest V3 packages for Chromium-based browsers and Firefox. The current extension distribution is a beta evaluation build. It has not been published to the Chrome Web Store or Firefox Add-ons. Chromium users can load the unpacked package; Firefox users can load it temporarily through about:debugging. Permanent Firefox installation requires Mozilla signing.","The online scanner and generator are available at no cost without an extension. Use the web app if your browser or device cannot install the beta package."]}
+    ]
+  },
+  {
+    "path": "/scan-qr-code-from-image/",
+    "title": "Scan a QR Code from an Image or Screenshot | SkipCam",
+    "description": "Read a QR code from a saved image or screenshot. Upload, drag, paste, or crop it in your browser without sending it to a server.",
+    "h1": "Scan a QR Code from an Image",
+    "lead": "Upload or drop a picture, paste a screenshot, and crop around the code if needed. The image stays in your browser.",
+    "tool": "scan",
+    "indexable": true,
+    "blocks": [
+      {"heading":"Scan a screenshot in four steps","steps":["Take or copy a screenshot that contains the QR code.","Choose the image, drag it into SkipCam, or paste it with Ctrl+V or Command+V.","If there is more than one code or the code is small, use crop selection to choose the area you want to scan.","Choose Decode image and inspect the result. Use the Open destination button only when you decide to follow the link."]},
+      {"heading":"Supported images","paragraphs":["The web app accepts PNG, JPG, JPEG, WebP, GIF, BMP, and AVIF images. Large or damaged images may fail to decode. Try a sharper screenshot, crop closer to the code, and leave the clear border around its square modules visible.","The decoder runs locally. SkipCam does not upload the image to an external QR service."]},
+      {"heading":"Paste from the clipboard","paragraphs":["The scanner handles a screenshot pasted with the normal keyboard shortcut. The Paste image button requests clipboard access only after you click it. SkipCam does not continuously read the clipboard."]}
+    ],
+    "faqs": [
+      {"question":"Can I scan a QR code from a picture on the same computer?","answer":"Yes. Save or copy the picture, open SkipCam, then choose it or paste it into the scanner. You do not need a second phone or a camera."},
+      {"question":"Why is the QR code not detected?","answer":"Try a sharper image, include the whole code and its clear border, increase the displayed size, or crop away unrelated detail. If it still fails, see the troubleshooting guide."}
+    ]
+  },
+  {
+    "path": "/scan-qr-code-without-phone/",
+    "title": "Scan a QR Code Without a Phone | SkipCam",
+    "description": "Scan a QR code on your computer without a phone. Paste a screenshot or use the browser's screen-sharing prompt to capture one frame.",
+    "h1": "Scan a QR Code Without a Phone",
+    "lead": "Use the screen or image already on your computer. SkipCam does not need a camera or a second device.",
+    "tool": "scan",
+    "indexable": true,
+    "blocks": [
+      {"heading":"Scan a code displayed on your screen","steps":["Choose Scan screen in the SkipCam web app. It does not request access until you click the button.","Use the browser's native prompt to pick a tab, application window, or entire display if your browser offers those choices.","Choose Capture frame. SkipCam copies one still frame and immediately stops screen sharing.","Optionally draw a crop around the QR code, then choose Decode image.","Review the destination and warnings. SkipCam never opens a decoded link automatically."]},
+      {"heading":"Use a screenshot when screen capture is unavailable","paragraphs":["Browser support for screen capture varies, and some protected pages or devices do not allow it. Take a screenshot instead, then upload, drag, or paste it into the scanner. The browser extension offers direct webpage-region scanning on supported pages.","All decoding runs locally. SkipCam does not record a video, upload a frame, or bypass the browser's permission dialog."]},
+      {"heading":"The website and extension","paragraphs":["The web app is available without installing anything and uses the browser's screen-sharing flow. The extension adds a quicker way to select content directly from the current webpage, along with image context-menu actions."]}
+    ],
+    "faqs": [
+      {"question":"Can SkipCam scan the screen without permission?","answer":"No. Browser screen capture requires an explicit user action and the browser's own sharing prompt. SkipCam cannot bypass that restriction."},
+      {"question":"Can I scan offline?","answer":"After the web app has cached its files during an online visit, its QR decoder and generator can work offline. The initial visit and missing app updates require a network connection."}
+    ]
+  },
+  {
+    "path": "/wifi-qr-code-generator/",
+    "title": "Free Wi-Fi QR Code Generator | SkipCam",
+    "description": "Create a Wi-Fi QR code for a network name, password, and security type. Preview and export it locally as PNG or SVG.",
+    "h1": "Create a Wi-Fi QR Code",
+    "lead": "Enter the network details and check the preview before sharing. Generation happens in your browser.",
+    "tool": "generate",
+    "indexable": true,
+    "generatorType": "wifi",
+    "blocks": [
+      {"heading":"Make a Wi-Fi QR code","steps":["Choose Wi-Fi as the content type in the generator.","Enter the exact network name and password, then select the network security type.","Check the QR preview and use a high-contrast foreground and background.","Download PNG for common sharing or SVG for scalable print. Test the saved image with a device before displaying it."]},
+      {"heading":"Keep the network details private","paragraphs":["The network name and password are encoded in the QR image. SkipCam generates the image locally and does not upload or save the entered password. Anyone who can scan or obtain the image may be able to read the credentials, so share it only as widely as you intend.","SkipCam does not connect to Wi-Fi on your behalf. A person scanning the code chooses what to do on their device."]},
+      {"heading":"Help phones read the code","paragraphs":["Keep the quiet border around the code, use a dark foreground on a light background, and avoid stretching the image after export. The QR code carries the Wi-Fi fields; whether a device offers to connect depends on its operating system and scanner."]}
+    ]
+  },
+  {
+    "path": "/guides/why-a-qr-code-will-not-scan/",
+    "title": "Why Won't My QR Code Scan? Troubleshooting Guide | SkipCam",
+    "description": "Fix common QR scanning problems. Check image sharpness, crop, quiet zone, contrast, file type, and screen-capture permissions.",
+    "h1": "Why Won't My QR Code Scan?",
+    "lead": "Most scan failures come from a blurry, incomplete, low-contrast, or unsupported image. Check these items before trying again.",
+    "tool": false,
+    "indexable": true,
+    "blocks": [
+      {"heading":"Check the image","items":["Use the original image or a full-resolution screenshot. Compression and blur can erase the small square modules.","Include the entire QR code and the clear margin around it. If the image has extra content, crop tightly without cutting into the code.","For a small code on screen, increase its size before taking the screenshot.","Try a supported raster image such as PNG, JPG, JPEG, WebP, GIF, BMP, or AVIF."]},
+      {"heading":"Check contrast and quiet space","paragraphs":["QR scanners need dark and light modules to remain distinct. Avoid very similar foreground and background colors, reflections, overlays, or logos covering the code. Leave the blank quiet zone around all four sides.","For a generated code, restore a high-contrast color pair and a wider quiet zone, then export a fresh PNG or SVG."]},
+      {"heading":"Check the browser action","paragraphs":["For screen scanning, use the browser's native sharing prompt and choose a source that includes the code. Some protected pages and browser surfaces cannot be captured. If the screen option is missing or denied, take a screenshot and upload or paste it instead.","[Open the SkipCam scanner](/scan/) to try the image or screenshot again. If the issue continues, contact Self Graphic Lab at [contact@selfgraphic.tech](mailto:contact@selfgraphic.tech) and include the image format and browser name. Do not send sensitive QR data unless you intend to share it."]}
+    ]
+  },
+  {
+    "path": "/about/",
+    "title": "About SkipCam | Self Graphic Lab",
+    "description": "SkipCam is a free, open-source online QR scanner and generator with a companion browser extension, maintained by Self Graphic Lab.",
+    "h1": "About SkipCam",
+    "lead": "A small browser utility for scanning and creating QR codes without another device.",
+    "tool": false,
+    "indexable": true,
+    "blocks": [
+      {"heading":"A QR tool for the browser","paragraphs":["SkipCam reads QR codes from images, screenshots, and a screen frame you choose to share. It also creates QR codes for common formats. The standalone web app works without installation; the browser extension adds direct webpage selection and image context-menu actions."]},
+      {"heading":"Maintained by Self Graphic Lab","paragraphs":["Self Graphic Lab builds and maintains SkipCam as a free, open-source utility. The source, releases, issues, and current beta status are available in the [SkipCam GitHub repository](https://github.com/asintha1a/skipcam). Questions can be sent to [contact@selfgraphic.tech](mailto:contact@selfgraphic.tech)."]},
+      {"heading":"Open-source foundation","paragraphs":["SkipCam is an independently maintained derivative of the MIT-licensed QR Snip project. The original license, copyright, third-party notices, and source history remain in the repository. The README's Attribution and License section explains the relationship and preserves original authorship."]}
+    ]
+  },
+  {
+    "path": "/privacy/",
+    "title": "SkipCam Privacy | QR Scanning in Your Browser",
+    "description": "Read how SkipCam handles QR images, screen capture, clipboard access, generated codes, and optional local history.",
+    "h1": "SkipCam Privacy",
+    "lead": "QR images and decoded content stay in the browser while you use the web app.",
+    "tool": false,
+    "indexable": true,
+    "blocks": [
+      {"heading":"Images, screen capture, and clipboard","paragraphs":["SkipCam decodes QR images in your browser and does not upload them. Screen sharing starts only after you click Scan screen and approve the browser prompt. The app captures a still frame, stops the stream, and does not record or transmit it.","Clipboard paste is handled after a paste event or an explicit Paste image click. SkipCam does not monitor the clipboard in the background."]},
+      {"heading":"History and generated content","paragraphs":["Web history is optional and off by default. When enabled, only eligible public HTTPS homepage URLs are saved in this browser's local storage. Wi-Fi passwords, paths, query strings, and other sensitive QR contents are excluded. History is not synchronized to the extension or a server.","QR generation runs locally. The generated image contains the text or fields you entered, so protect Wi-Fi credentials and personal details when sharing the image."]},
+      {"heading":"Network and analytics","paragraphs":["The site downloads its application files and static product images from its own domain. It does not use an analytics tracker, account service, remote QR API, or backend for QR processing. The installable web app can cache application assets for offline use, but it does not cache user images, screen streams, or decoded results.","For full details, see the [repository privacy policy](https://github.com/asintha1a/skipcam/blob/main/PRIVACY.md)."]}
+    ]
+  },
+  {
+    "path": "/security/",
+    "title": "SkipCam Security and QR Link Warnings",
+    "description": "Learn what SkipCam's offline URL inspection checks, what it cannot verify, and how to report a security issue.",
+    "h1": "Security and QR Link Checks",
+    "lead": "Inspect a decoded destination before you choose to open it. SkipCam does not promise that a link is safe.",
+    "tool": false,
+    "indexable": true,
+    "blocks": [
+      {"heading":"What URL inspection does","paragraphs":["SkipCam displays the complete decoded URL and hostname when available. Offline heuristics can flag unencrypted HTTP, known shortener patterns, internationalized hostnames, suspicious host formatting, or credentials embedded in a URL. A warning is a reason to inspect the destination; the absence of a warning is not proof of safety."]},
+      {"heading":"What it does not do","paragraphs":["SkipCam does not query a live malware or phishing reputation service, visit the destination during scanning, or guarantee a link is harmless. Decoded URLs are never opened automatically. Do not enter passwords or payment details on a destination unless you have independently checked it."]},
+      {"heading":"Report a security issue","paragraphs":["Review the repository's [security policy](https://github.com/asintha1a/skipcam/blob/main/SECURITY.md) for responsible reporting instructions. Do not post an unpatched vulnerability or private QR payload in a public issue."]}
+    ]
+  },
+  {
+    "path": "/help/",
+    "title": "SkipCam Help and Browser Support",
+    "description": "Get help with image scanning, pasted screenshots, screen capture, QR generation, privacy, and the SkipCam extension beta.",
+    "h1": "SkipCam Help",
+    "lead": "Find the right way to scan, make a QR code, or troubleshoot a browser issue.",
+    "tool": false,
+    "indexable": true,
+    "blocks": [
+      {"heading":"Scanning help","items":["For an image or screenshot, use the [online scanner](/scan/) and choose, drop, or paste the file.","For a QR code on your screen, click Scan screen and use the browser's native picker. If the browser does not support it, upload a screenshot.","If a code is not detected, try a sharper image, keep the whole code and its clear border, and draw a crop around it."]},
+      {"heading":"Generator help","paragraphs":["Use the [QR generator](/generate/) to create a URL, text, email, telephone, SMS, Wi-Fi, or contact card code. Adjust color, size, correction level, and quiet zone, then export PNG or SVG. Scan your exported file before printing or sharing."]},
+      {"heading":"Browser support","paragraphs":["The website is a standard client-side web app. Image upload and generation work in modern browsers with JavaScript and Canvas support. Screen capture requires a secure context and a browser that supports `getDisplayMedia()`. The browser decides which tabs, windows, or displays are available. The extension has separate Chromium and Firefox beta packages and has not been published in browser stores."]},
+      {"heading":"More information","paragraphs":["Read the [privacy information](/privacy/), [security notes](/security/), [project README](https://github.com/asintha1a/skipcam#readme), or [release notes](https://github.com/asintha1a/skipcam/releases). For help, contact [contact@selfgraphic.tech](mailto:contact@selfgraphic.tech)."]}
+    ]
+  }
+]

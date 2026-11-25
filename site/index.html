@@ -4,54 +4,65 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111111">
-<meta name="description" content="Scan a QR code online from an image, screenshot or screen capture. Generate codes locally. Free, private and no phone required.">
+<meta name="author" content="Self Graphic Lab">
+<meta name="description" content="Scan QR codes from images, screenshots, or your screen without a phone or extension. Generate QR codes for free with private, local processing.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="SkipCam: Skip the camera. Scan anyway.">
-<meta property="og:description" content="Scan, generate and inspect QR codes directly in your browser. Your phone can sit this one out.">
+<meta property="og:site_name" content="SkipCam">
+<meta property="og:title" content="Free Online QR Code Scanner &amp; Generator | SkipCam">
+<meta property="og:description" content="Scan QR codes from images, screenshots, or your screen without a phone or extension. Generate QR codes for free with private, local processing.">
+<meta property="og:image:alt" content="SkipCam QR scanning and generation tools by Self Graphic Lab">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Online QR Code Scanner &amp; Generator | SkipCam">
+<meta name="twitter:description" content="Scan QR codes from images, screenshots, or your screen without a phone or extension.">
 <!-- deploy-metadata -->
+<!-- robots-index -->
+<!-- structured-data -->
 <link rel="icon" type="image/svg+xml" href="/media/favicon.svg">
 <link rel="alternate icon" href="/media/favicon.png">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="stylesheet" href="/site.css">
 <script type="module" src="/app.js"></script>
-<title>SkipCam: Skip the camera. Scan anyway.</title>
+<title>Free Online QR Code Scanner &amp; Generator | SkipCam</title>
 </head>
 <body>
 <a class="skip" href="#tool">Skip to QR tools</a>
 <header class="wrap top">
   <a class="brand" href="/" aria-label="SkipCam home"><img src="/media/symbol.svg" alt="" width="34" height="34"><span>skipcam.</span></a>
   <nav aria-label="Main navigation">
-    <a href="/scan" data-route>Scanner</a><a href="/generate" data-route>Generator</a><a href="/history" data-route>History</a>
-    <a href="/extension" data-route>Get Extension</a><a href="https://github.com/asintha1a/skipcam" rel="noreferrer">GitHub ↗</a>
+    <a href="/scan/">Scanner</a><a href="/generate/">Generator</a><a href="/history/">History</a>
+    <a href="/extension/">Get Extension</a><a href="https://github.com/asintha1a/skipcam" rel="noreferrer">GitHub ↗</a>
   </nav>
 </header>
 <main id="main">
   <section class="wrap hero">
-    <div><p class="overline">SELF GRAPHIC LAB / FREE QR TOOLKIT</p><h1>Skip the camera.<br><span>Scan anyway.</span></h1>
-      <p class="intro">Your phone can sit this one out. Scan, generate and inspect QR codes right here, on this device.</p>
-      <div class="hero-actions"><a class="button primary" href="/scan" data-route>Open scanner ↓</a><span class="local-note"><i aria-hidden="true"></i> Processing stays on your device</span></div>
+    <div><p class="overline">SELF GRAPHIC LAB / FREE QR TOOLKIT</p><p class="brand-slogan">Skip the camera. Scan anyway.</p><h1 id="page-title"><!-- page-h1 -->Scan QR Codes Online Without Your Phone</h1>
+      <p class="intro"><!-- route-lead -->Read a code from an image, paste a screenshot, or capture one frame from your screen.</p>
+      <div class="hero-actions"><a class="button primary" href="/scan/">Open scanner ↓</a><span class="local-note"><i aria-hidden="true"></i> Processing stays on your device</span></div>
     </div>
     <div class="hero-mark" aria-hidden="true"><img src="/media/symbol.svg" alt=""></div>
   </section>
 
-  <section id="tool" class="wrap toolkit" aria-labelledby="tool-title">
+  <!-- tool-section:start --><section id="tool" class="wrap toolkit" aria-labelledby="tool-title">
     <div class="tool-heading"><div><p class="overline">SKIPCAM WEB APP</p><h2 id="tool-title">Your QR toolkit.</h2></div>
       <div class="tool-meta"><span id="offline-status" aria-live="polite">Ready in your browser</span><button id="install-app" class="button small" type="button" hidden>Install app</button></div>
     </div>
-    <div class="tool-tabs" role="tablist" aria-label="QR tools">
-      <a role="tab" href="/scan" data-route data-tab="scan">Scan</a>
-      <a role="tab" href="/generate" data-route data-tab="generate">Generate</a>
-      <a role="tab" href="/history" data-route data-tab="history">History</a>
-    </div>
+    <nav class="tool-tabs" aria-label="QR tools">
+      <a href="/scan/" data-tab="scan">Scan</a>
+      <a href="/generate/" data-tab="generate">Generate</a>
+      <a href="/history/" data-tab="history">History</a>
+    </nav>
     <section id="tool-pane" class="tool-pane" aria-live="off"></section>
     <p id="app-status" class="app-status" role="status" aria-live="polite"></p>
-  </section>
+  </section><!-- tool-section:end -->
 
+  <!-- route-content -->
+
+  <!-- homepage-content:start -->
   <section class="wrap section split">
     <div><p class="overline">TWO WAYS TO SKIP THE CAMERA</p><h2>Use it now.<br>Install when ready.</h2></div>
     <div class="choice-grid">
-      <article><span class="choice-index">01 / WEB APP</span><h3>Instant access</h3><p>Scan images, screenshots and a screen selection. Make a QR code without installing anything.</p><a href="/scan" data-route>Use the web app ↗</a></article>
-      <article><span class="choice-index">02 / EXTENSION</span><h3>Right in your browser</h3><p>Scan a region of a webpage or right-click an image with the SkipCam extension.</p><a href="/extension" data-route>Get the extension ↗</a></article>
+      <article><span class="choice-index">01 / WEB APP</span><h3>Instant access</h3><p>Scan images, screenshots and a screen selection. Make a QR code without installing anything.</p><a href="/scan/">Use the web app ↗</a></article>
+      <article><span class="choice-index">02 / EXTENSION</span><h3>Right in your browser</h3><p>Scan a region of a webpage or right-click an image with the SkipCam extension.</p><a href="/extension/">Get the extension ↗</a></article>
     </div>
   </section>
   <section class="wrap section app-shots">
@@ -71,7 +82,7 @@
     <details><summary>Can I scan a browser tab or screen?</summary><p>Choose Scan screen and select a tab, window or display in your browser's native sharing dialog. SkipCam captures one frame, immediately stops the stream and decodes locally. Browser support varies.</p></details>
     <details><summary>Does SkipCam open decoded links automatically?</summary><p>No. You can inspect the destination and offline warnings, then choose whether to open it.</p></details>
     <details><summary>Is SkipCam free and open source?</summary><p>Yes. Both the web app and extension are free. SkipCam is MIT licensed and maintained by Self Graphic Lab. Upstream attribution is in the repository's Attribution and License section.</p></details>
-  </section>
+  </section><!-- homepage-content:end -->
 </main>
-<footer class="wrap bottom"><a class="brand" href="/"><img src="/media/symbol.svg" alt="" width="30" height="30"><span>skipcam.</span></a><span>Free and open source · by <a href="https://www.selfgraphic.tech/">Self Graphic Lab</a></span><a href="https://github.com/asintha1a/skipcam">Source code ↗</a></footer>
+<footer class="wrap bottom"><a class="brand" href="/"><img src="/media/symbol.svg" alt="" width="30" height="30"><span>skipcam.</span></a><span>Free and open source · by <a href="https://www.selfgraphic.tech/">Self Graphic Lab</a></span><nav aria-label="Product information"><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/security/">Security</a><a href="/help/">Help</a></nav><a href="https://github.com/asintha1a/skipcam">Source code ↗</a></footer>
 </body></html>

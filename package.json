@@ -6,7 +6,8 @@
     "test": "node --test",
     "build": "node scripts/build.mjs",
     "lint": "node scripts/lint.mjs",
-    "test:browser": "node scripts/browser-qa.mjs"
+    "test:browser": "node scripts/browser-qa.mjs",
+    "seo:validate": "node scripts/seo-validate.mjs"
   },
   "author": "Self Graphic Lab <contact@selfgraphic.tech>",
   "license": "MIT",

@@ -76,9 +76,31 @@ try {
   await page.reload({ waitUntil: 'domcontentloaded' });
   assert.equal(await page.locator('#tool-pane .scanner').count(), 1);
   await page.locator('#tool').screenshot({ path: join(screenshots, 'web-app-scanner.png') });
-  check('tool-first homepage, scanner route and PWA service worker');
+  const staticRoutes = [
+    ['/scan/', 'Scan a QR Code from an Image or Screen', '#tool-pane .scanner'],
+    ['/generate/', 'Create a QR Code for Free', '#generator-type'],
+    ['/history/', 'Your QR Scan History', '.history-view'],
+    ['/extension/', 'Add QR Scanning to Your Browser', '.extension-panel'],
+    ['/scan-qr-code-from-image/', 'Scan a QR Code from an Image', '#tool-pane .scanner'],
+    ['/scan-qr-code-without-phone/', 'Scan a QR Code Without a Phone', '#tool-pane .scanner'],
+    ['/wifi-qr-code-generator/', 'Create a Wi-Fi QR Code', '#generator-type'],
+    ['/guides/why-a-qr-code-will-not-scan/', 'Why Won\'t My QR Code Scan?', null],
+    ['/about/', 'About SkipCam', null], ['/privacy/', 'SkipCam Privacy', null],
+    ['/security/', 'Security and QR Link Checks', null], ['/help/', 'SkipCam Help', null]
+  ];
+  for (const [path, heading, selector] of staticRoutes) {
+    await page.goto(origin + path, { waitUntil: 'domcontentloaded' });
+    assert.equal((await page.locator('h1').textContent()).trim(), heading, `route H1 ${path}`);
+    assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://skipcam.selfgraphic.tech' + path);
+    if (selector) await page.locator(selector).waitFor();
+  }
+  await page.goto(origin + '/history/', { waitUntil: 'domcontentloaded' });
+  assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex,follow');
+  await page.goto(origin + '/', { waitUntil: 'domcontentloaded' });
+  await page.locator('#tool-pane .scanner').waitFor();
+  check('tool-first homepage, direct static routes, history noindex and PWA service worker');
 
-  await page.getByRole('tab', { name: 'Generate' }).click();
+  await page.locator('a[data-tab="generate"]').click();
   await page.getByLabel('Website URL', { exact: true }).fill('https://example.org/');
   await page.locator('.generator-output canvas').waitFor();
   const baseQr = await pngFromPreview(page);
@@ -112,9 +134,9 @@ try {
   assert.equal(await page.locator('.generator-output canvas').count(), 1);
   check('all seven QR formats and quiet-zone setting');
 
-  await page.getByRole('tab', { name: 'History' }).click();
+  await page.locator('a[data-tab="history"]').click();
   await page.getByLabel('Enable optional local history').check();
-  await page.getByRole('tab', { name: 'Scan' }).click();
+  await page.locator('a[data-tab="scan"]').click();
   await page.locator('input[type=file]').setInputFiles({ name: 'sample.png', mimeType: 'image/png', buffer: baseQr });
   await page.getByRole('button', { name: 'Decode image' }).click();
   await page.getByText('example.org', { exact: false }).first().waitFor();
@@ -122,13 +144,13 @@ try {
   await page.locator('#tool').screenshot({ path: join(screenshots, 'web-app-result.png') });
   check('local image upload, QR decode, destination preview and explicit open action');
 
-  await page.getByRole('tab', { name: 'History' }).click();
+  await page.locator('a[data-tab="history"]').click();
   await page.getByPlaceholder('Search saved addresses').fill('example.org');
   await page.getByText('https://example.org/', { exact: true }).waitFor();
   await page.locator('#tool').screenshot({ path: join(screenshots, 'web-app-history.png') });
   check('opt-in local scan history and search');
 
-  await page.getByRole('tab', { name: 'Scan' }).click();
+  await page.locator('a[data-tab="scan"]').click();
   const pastePayload = encoded(baseQr);
   await page.evaluate(async data => {
     const bytes = Uint8Array.from(atob(data), c => c.charCodeAt(0));
@@ -162,22 +184,22 @@ try {
   await page.getByRole('button', { name: 'Decode image' }).waitFor();
   check('drag-and-drop image scanning');
 
-  await page.getByRole('tab', { name: 'Generate' }).click();
+  await page.locator('a[data-tab="generate"]').click();
   await page.locator('#generator-type').selectOption('url');
   await page.getByLabel('Website URL', { exact: true }).fill('http://example.org/scan');
   const httpQr = await pngFromPreview(page);
-  await page.getByRole('tab', { name: 'Scan' }).click();
+  await page.locator('a[data-tab="scan"]').click();
   await page.locator('input[type=file]').setInputFiles({ name: 'http.png', mimeType: 'image/png', buffer: httpQr });
   await page.getByRole('button', { name: 'Decode image' }).click();
   await page.getByText('HTTP traffic is unencrypted.').waitFor();
   assert.equal(await page.getByRole('link', { name: 'Open destination ↗' }).getAttribute('href'), 'http://example.org/scan');
   check('offline URL warning and explicit opening only');
 
-  await page.getByRole('tab', { name: 'Generate' }).click();
+  await page.locator('a[data-tab="generate"]').click();
   await page.locator('#generator-type').selectOption('text');
   await page.getByLabel('Text', { exact: true }).fill('<img src=x onerror=alert(1)>');
   const htmlQr = await pngFromPreview(page);
-  await page.getByRole('tab', { name: 'Scan' }).click();
+  await page.locator('a[data-tab="scan"]').click();
   await page.locator('input[type=file]').setInputFiles({ name: 'markup.png', mimeType: 'image/png', buffer: htmlQr });
   await page.getByRole('button', { name: 'Decode image' }).click();
   await page.getByText('<img src=x onerror=alert(1)>', { exact: true }).waitFor();
@@ -185,7 +207,7 @@ try {
   assert.equal(await page.getByRole('link', { name: 'Open destination ↗' }).count(), 0);
   check('decoded HTML remains inert text; dangerous or text protocols do not get an open action');
 
-  await page.getByRole('tab', { name: 'Generate' }).click();
+  await page.locator('a[data-tab="generate"]').click();
   await page.locator('#generator-type').selectOption('url');
   await page.getByLabel('Website URL', { exact: true }).fill('https://second.example.net/');
   const secondQr = await page.locator('.generator-output canvas').evaluate(canvas => canvas.toDataURL('image/png').split(',')[1]);
@@ -200,7 +222,7 @@ try {
     ctx.drawImage(left, 0, 16, 480, 480); ctx.drawImage(right, 528, 16, 480, 480);
     return canvas.toDataURL('image/png').split(',')[1];
   }, [pastePayload, secondQr]);
-  await page.getByRole('tab', { name: 'Scan' }).click();
+  await page.locator('a[data-tab="scan"]').click();
   await page.locator('input[type=file]').setInputFiles({ name: 'multiple.png', mimeType: 'image/png', buffer: urlFor(combinedQr) });
   await page.getByRole('button', { name: 'Decode image' }).click();
   await page.getByText(/QR codes found/).waitFor({ timeout: 15000 });
