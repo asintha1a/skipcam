@@ -45,7 +45,7 @@ async function website() {
   const configured = process.env.SKIPCAM_SITE_URL || 'https://skipcam.selfgraphic.tech';
   const site = configured ? new URL(configured.includes('://') ? configured : 'https://' + configured).origin : null;
   const routeMetadata = {
-    '/': ['SkipCam — Skip the camera. Scan anyway.', 'Scan, generate and inspect QR codes directly in your browser. Free, private QR tools with no phone required.'],
+    '/': ['SkipCam: Skip the camera. Scan anyway.', 'Scan, generate and inspect QR codes directly in your browser. Free, private QR tools with no phone required.'],
     '/scan': ['Free QR Code Scanner Online | SkipCam', 'Scan a QR code from an image, screenshot or screen capture. Private local QR decoding with no uploads.'],
     '/generate': ['Free QR Code Generator Online | SkipCam', 'Generate QR codes for links, text, Wi-Fi, email, phone, SMS and contact cards. Customize and export locally.'],
     '/history': ['Private QR Scan History | SkipCam', 'Optional, local-only scan history. Search eligible QR scans stored on this device. History is off by default.'],
@@ -56,7 +56,7 @@ async function website() {
     const canonical = site ? site + (route === '/' ? '/' : route + '/') : '';
     const metadata = site ?
       '<link rel="canonical" href="' + canonical + '"><meta property="og:url" content="' + canonical + '"><meta property="og:image" content="' + site + '/media/social-preview.png"><meta name="twitter:card" content="summary_large_image">' : '';
-    const html = rootHtml.replace('<title>SkipCam — Skip the camera. Scan anyway.</title>', '<title>' + title + '</title>')
+    const html = rootHtml.replace('<title>SkipCam: Skip the camera. Scan anyway.</title>', '<title>' + title + '</title>')
       .replace('content="Scan a QR code online from an image, screenshot or screen capture. Generate codes locally. Free, private and no phone required."', 'content="' + description + '"')
       .replace('<!-- deploy-metadata -->', metadata);
     const target = route === '/' ? dir + '/index.html' : dir + route + '/index.html';

@@ -1,6 +1,6 @@
 {
   "id": "/",
-  "name": "SkipCam — Skip the camera. Scan anyway.",
+  "name": "SkipCam QR Toolkit",
   "short_name": "SkipCam",
   "description": "Free, private QR scanning and generation in your browser.",
   "start_url": "/scan/",

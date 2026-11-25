@@ -90,7 +90,7 @@ function updateActiveTab() {
     '/generate': 'Free QR Code Generator Online | SkipCam',
     '/history': 'Private QR Scan History | SkipCam',
     '/extension': 'SkipCam Browser Extension | Skip the camera'
-  })[currentPath] || 'SkipCam — Skip the camera. Scan anyway.';
+  })[currentPath] || 'SkipCam: Skip the camera. Scan anyway.';
 }
 function navigate(path) {
   if (!['/', '/scan', '/generate', '/history', '/extension'].includes(path)) return;
