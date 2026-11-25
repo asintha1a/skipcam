@@ -26,4 +26,6 @@ No Search Console, Bing Webmaster, analytics, or verified crawler-IP access was 
 
 Search Console and Bing Webmaster verification and sitemap submission still need to be completed by an account owner. Search visibility, indexing, field performance data, crawler IP behavior, Cloudflare bot rules, and DNS behavior for `snipray.selfgraphic.tech` are not verified. No rankings, traffic, AI citations, or performance scores are claimed.
 
+Vercel reports that `snipray.selfgraphic.tech` is attached to the project but not configured at DNS. To activate that legacy redirect, add this record in Cloudflare: `A` record, name `snipray`, value `76.76.21.21`. No DNS record was changed in this work.
+
 See [`BASELINE_AUDIT.md`](BASELINE_AUDIT.md), [`IMPLEMENTATION.md`](IMPLEMENTATION.md), [`KEYWORD_STRATEGY.md`](KEYWORD_STRATEGY.md), [`AEO_GEO_STRATEGY.md`](AEO_GEO_STRATEGY.md), and [`GROWTH_STRATEGY.md`](GROWTH_STRATEGY.md).
