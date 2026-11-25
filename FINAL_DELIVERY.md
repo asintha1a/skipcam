@@ -12,7 +12,7 @@ Updated: 2026-11-25. Statuses reflect checks performed against source, productio
 
 - **VERIFIED — Official production URL:** [https://skipcam.selfgraphic.tech/](https://skipcam.selfgraphic.tech/) responds HTTP 200 and serves the new tool-first SkipCam web application.
 - **VERIFIED — Shareable routes:** `/scan/`, `/generate/`, and `/history/` respond HTTP 200. The web manifest, service worker, `robots.txt`, and `sitemap.xml` also respond HTTP 200.
-- **VERIFIED — Vercel production deployment:** [Deployment](https://skipcam-5dx5mvmse-asinthadilhara37-collabs-projects.vercel.app/) reached READY. Deployment ID: `dpl_EecK6YmY2eyrC4LnsXPdfLv9xeMn`.
+- **VERIFIED — Vercel production deployment:** [Deployment](https://skipcam-5o51k53mh-asinthadilhara37-collabs-projects.vercel.app/) reached READY. Deployment ID: `dpl_87tamzGQkjwFuPa4v8ePwGFcyQd5`.
 - **VERIFIED — Browser functionality:** 15 automated scenarios passed against the live custom domain in installed Chrome using a temporary isolated profile. Tests cover image upload/decode, all seven formats, PNG/SVG export, clipboard paste, drag-and-drop, crop mapping, multiple QR detection, offline URL warnings, local history, mobile layout, PWA offline operation, and simulated screen capture with immediate stream shutdown. No page or console errors occurred.
 - **VERIFIED — Privacy behavior in tested flows:** QR processing is local; history starts disabled; URLs require an explicit open click; user images, scan results and screen streams are not cached by the service worker.
 - **COMPLETED BUT UNVERIFIED — Native screen-share chooser:** The `getDisplayMedia()` path and stream shutdown were exercised with an isolated test stream. The actual browser chooser and selecting a real tab/window/display still need a manual browser check.
@@ -49,5 +49,5 @@ Updated: 2026-11-25. Statuses reflect checks performed against source, productio
 2. Verify the web app in Firefox, Safari and a physical mobile browser; the current browser matrix is Chrome only.
 3. Complete popup/context-menu/settings QA for the extension in Chromium and Firefox before calling the extension fully verified.
 4. Publish a new beta extension package if the current shared decoder/generator source should be included in downloadable extension archives; beta.2 remains an earlier artifact.
-5. Review the updated portfolio preview, run its tests/build, and merge PR #7 if approved.
+5. Review the updated portfolio preview, run any portfolio-specific tests, and merge PR #7 if approved.
 6. Browser-store listings require separate submissions and approval; Firefox permanent installation requires signing.
