@@ -4,6 +4,8 @@
   "buildCommand": "npm run build -- site",
   "outputDirectory": "dist/site",
   "redirects": [
+    {"source": "/", "has": [{"type": "host", "value": "snipray.vercel.app"}], "destination": "https://skipcam.vercel.app/", "permanent": true},
+    {"source": "/", "has": [{"type": "host", "value": "snipray.selfgraphic.tech"}], "destination": "https://skipcam.selfgraphic.tech/", "permanent": true},
     {"source": "/:path*", "has": [{"type": "host", "value": "snipray.vercel.app"}], "destination": "https://skipcam.vercel.app/:path*", "permanent": true},
     {"source": "/:path*", "has": [{"type": "host", "value": "snipray.selfgraphic.tech"}], "destination": "https://skipcam.selfgraphic.tech/:path*", "permanent": true}
   ],
