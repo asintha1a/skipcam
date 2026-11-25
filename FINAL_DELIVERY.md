@@ -1,39 +1,49 @@
-# SnipRay beta delivery
+# SkipCam delivery report
 
-Updated: 2026-11-24. This report distinguishes verified outcomes from pending browser and DNS work.
+Updated: 2026-11-25. Statuses describe what was checked, not what is merely present in source.
 
-## Published source and packages
+## Product and source
 
-- **VERIFIED — GitHub repository:** [asintha1a/snipray](https://github.com/asintha1a/snipray), public. The source and production metadata fix are published on `main` (metadata fix commit `e4ef7d7fe7db473eccf5475cf4e34f060c10297d`); package archives and delivery records follow in later commits.
-- **VERIFIED — Attribution:** SnipRay is an independently maintained, enhanced derivative of [QR Snip](https://github.com/IsaacJoel06/qr-snip). Upstream history, Isaac Joel Mithran's MIT notice and third-party notices are preserved.
-- **VERIFIED — Beta release:** [v1.0.0-beta.1](https://github.com/asintha1a/snipray/releases/tag/v1.0.0-beta.1) exists as a prerelease. It is not represented as a stable or fully browser-verified release.
-- **BLOCKED — Release attachments:** GitHub's release asset upload host could not resolve from the publishing environment. The tested packages are committed in the public repository and direct download URLs below return HTTP 200.
-- **VERIFIED — Chromium package:** [Download ZIP](https://raw.githubusercontent.com/asintha1a/snipray/main/release-assets/v1.0.0-beta.1/snipray-chromium-v1.0.0-beta.1.zip). SHA-256: `c863303ff4c65771bff0fb6522b61b5571ed2893f2c65851f5ea49200f9e1b57`.
-- **VERIFIED — Firefox package:** [Download ZIP](https://raw.githubusercontent.com/asintha1a/snipray/main/release-assets/v1.0.0-beta.1/snipray-firefox-v1.0.0-beta.1.zip). SHA-256: `c28b7045b0c15ac4182e5f06dfee902ac1186bbf395feaaa2b8fe91934842a36`.
-- **VERIFIED — Package manifests:** Both are Manifest V3; Chromium uses a service worker and Firefox has its separate background scripts and Gecko minimum-version metadata. Browser manifest version remains numeric `1.0.0`; beta labeling is on the release and archive filenames.
+- **VERIFIED — Repository:** [asintha1a/skipcam](https://github.com/asintha1a/skipcam) is public. Authenticated GitHub CLI identity is `asintha1a`. Description, homepage, and topics identify SkipCam and Self Graphic Lab.
+- **VERIFIED — Published commit:** `4094f11c0e9a1ff91ec68f68f733ea2f8e666839` on `main`; local checkout is clean after this report is committed.
+- **VERIFIED — Remotes and history:** `origin` points to the renamed repository. The original QR Snip repository remains the fetch-only `upstream`; no upstream pushes or history rewrites were made.
+- **VERIFIED — Legal attribution:** The full MIT license and Isaac Joel Mithran copyright remain intact. Third-party notices retain the necessary upstream acknowledgment. GitHub's Contributors view reflects historical commits and identities; no authorship was reassigned.
+- **VERIFIED — Branding audit:** Current interface, manifests, site, release packages, and documentation use SkipCam. Remaining SnipRay text is limited to preserved legacy-domain redirects, historical beta.1 packages, the original license/provenance, and compatibility identifiers kept to avoid disrupting existing installations or in-progress extension state.
+- **VERIFIED — Secret-file audit:** No tracked environment files, private keys, or credential files were found. Local Vercel configuration is ignored.
 
-## Website and portfolio
+## Brand assets
 
-- **VERIFIED — Production landing page:** [https://snipray.vercel.app/](https://snipray.vercel.app/), HTTP 200. Canonical URL, Open Graph image, `robots.txt`, and sitemap use this verified domain. Beta download buttons point to the verified ZIP URLs.
-- **UNVERIFIED — Interactive landing-page demos:** The page and assets load, but demo interactions were not fully exercised in a browser automation session.
-- **BLOCKED — Preferred custom domain:** `snipray.selfgraphic.tech` is attached to the Vercel project but DNS is not configured. Add a Cloudflare record: **CNAME** name `snipray`, target `189cd2e8979e9fb5.vercel-dns-017.com`, proxy disabled (DNS only). Then rerun `vercel domains verify snipray.selfgraphic.tech`. The custom domain was not claimed as live.
-- **VERIFIED — Portfolio pull request:** [PR #7](https://github.com/asintha1a/self-graphic-lab-website/pull/7) is open from `feat/snipray-portfolio`. It adds a project entry, case-study route and page, and existing promotional cover artwork with explicit beta and attribution text. It has not been merged or deployed.
-- **UNVERIFIED — Portfolio build and tests:** Not run. A fresh sparse clone repeatedly failed to hydrate remote Git blobs; changes were prepared on an isolated branch through GitHub's Git API. The original portfolio checkout was not reset, cleaned, or otherwise modified by these changes.
+- **VERIFIED — Brand source and exports:** `assets/brand/` contains the SkipCam logo symbol, wordmark and lockup, black/white and transparent exports, extension icons, marketing icons, favicon, social preview, portfolio cover, and identity sheet.
+- **UNVERIFIED — GitHub social preview setting:** The preview artwork is present at `assets/brand/social-preview.png` and the site serves its Open Graph image. GitHub still shows its generated repository card; repository settings did not open in the available browser session, so the image has not been confirmed as uploaded in GitHub Settings → Social preview.
 
-## Tests and browser verification
+## Release and verification
 
-- **VERIFIED — Automated extension tests:** `npm test` passed 10/10 tests in the resumed run.
-- **VERIFIED — Lint and production builds:** `npm run lint` and `npm run build` completed successfully; Chromium, Firefox, and site build outputs were produced. The site build passed with the tracked screenshots directory.
-- **VERIFIED — Package inspection:** Both ZIPs contain the expected manifest and extension files; SHA-256 checksums are above.
-- **BLOCKED — Interactive extension testing:** Chrome is installed. A separate temporary Chrome profile launched without using the personal profile, but Chrome did not expose the extension service worker to the automation harness, so popup and extension interactions could not be verified. No Firefox or Brave executable was found. No personal browser session was closed or inspected.
-- **BLOCKED — Product screenshots:** No real extension screenshots were captured. The site and case study use existing promotional art and label it as artwork, not as a product screenshot.
+- **VERIFIED — Beta release:** [v1.0.0-beta.2](https://github.com/asintha1a/skipcam/releases/tag/v1.0.0-beta.2) is published as a prerelease; beta.1 remains available as historical release. No stable release or browser-store listing is claimed.
+- **VERIFIED — Chromium package:** [Download SkipCam for Chromium](https://github.com/asintha1a/skipcam/releases/download/v1.0.0-beta.2/skipcam-chromium-v1.0.0-beta.2.zip). Local SHA-256: `3472073378e6604c0688c5551f9e38b81bdfbf940b1d69a7b9b46da34b2553e3`.
+- **VERIFIED — Firefox package:** [Download SkipCam for Firefox](https://github.com/asintha1a/skipcam/releases/download/v1.0.0-beta.2/skipcam-firefox-v1.0.0-beta.2.zip). Local SHA-256: `be770ed48b08b6d888c2ed8da2368dbe80dc7b355b9a50db2912a69f0e3d8d13`.
+- **VERIFIED — Package contents:** Both archives pass ZIP integrity checks and include the SkipCam Manifest V3 name, expected files, and browser-specific manifest configuration. Extension manifest version is valid `1.0.0`; beta designation is carried in release tag and package names. Both download URLs returned HTTP 200.
+- **VERIFIED — Automated checks:** `npm test` passed 10/10; `npm run lint` and `npm run build` completed successfully on 2026-11-25.
+- **UNVERIFIED — Extension browser QA:** Full interactive popup, capture, context-menu, history, and settings behavior has not been verified in an installed browser. The beta release remains evaluation-only. Do not infer browser compatibility from successful builds alone.
+- **UNVERIFIED — Store availability:** No Chrome Web Store or Firefox Add-ons publication is claimed. Firefox permanent installation requires a signed add-on; the ZIP is suitable for temporary testing through `about:debugging`.
 
-## Manual actions and limitations
+## Website and legacy links
 
-1. Add the CNAME record above and verify the custom domain in Vercel.
-2. For local extension testing, extract a ZIP. Chromium: open the extensions page, enable Developer mode, select **Load unpacked**, and choose the extracted directory. Firefox: open `about:debugging#/runtime/this-firefox`, select **Load Temporary Add-on**, and choose the extracted `manifest.json`. Firefox temporary installs disappear when the browser closes; permanent installation requires Mozilla signing.
-3. Exercise screen-region capture, upload, clipboard and context-menu scans, all generator formats/exports, security warnings, history, settings, themes, keyboard shortcut, zoom and high-DPI behavior. Capture real screenshots after these checks.
-4. Run the Self Graphic Lab portfolio build and tests on PR #7 before review/merge. PR #7 remains open; no production portfolio change was pushed.
-5. Stable v1.0.0 and browser-store publication remain pending. No Chrome Web Store or Firefox Add-ons listing is claimed.
+- **VERIFIED — Production site:** [https://skipcam.vercel.app/](https://skipcam.vercel.app/) returned HTTP 200. Live title, canonical URL, Open Graph image, beta.2 download references, `robots.txt`, and `sitemap.xml` were checked.
+- **VERIFIED — Landing-page interaction checks:** Local browser QA exercised the sample QR scanner and generator; the sample decoded to `https://example.org/`, generated output appeared, a 390px mobile viewport had no horizontal overflow, and no page errors were observed.
+- **VERIFIED — Old Vercel URL redirect:** `https://snipray.vercel.app/` and a nested path return permanent redirects to `https://skipcam.vercel.app/`.
+- **BLOCKED — Custom domain:** `skipcam.selfgraphic.tech` does not resolve yet. Add a Cloudflare DNS-only CNAME: name `skipcam`, target `189cd2e8979e9fb5.vercel-dns-017.com.`, then verify the domain in Vercel. DNS was not modified.
+- **UNVERIFIED — Old custom-domain redirect:** The redirect is configured, but the old `snipray.selfgraphic.tech` hostname is not verified because its DNS is not configured.
 
-The beta's URL warnings are offline heuristics, not live reputation checks or a safety guarantee. Browser compatibility is not claimed beyond successful build and manifest validation.
+## Portfolio
+
+- **VERIFIED — Portfolio change prepared:** [Self Graphic Lab PR #7](https://github.com/asintha1a/self-graphic-lab-website/pull/7) remains open, mergeable, and on its existing feature branch. It replaces the SnipRay project entry with SkipCam, adds the `/work/skipcam` case study and new cover, and redirects the old case-study route.
+- **VERIFIED — Preview route:** The PR preview's `/work/skipcam` route returned HTTP 200 with SkipCam metadata; `/work/snipray` returned HTTP 308 to the new route.
+- **UNVERIFIED — Portfolio tests/build and production listing:** The portfolio's full test suite and production build have not been run locally. PR #7 has not been merged, so the production portfolio does not yet include this case study.
+
+## Remaining manual actions
+
+1. Upload `assets/brand/social-preview.png` in repository **Settings → Social preview**.
+2. Add the custom-domain CNAME above, then verify it in Vercel.
+3. Run the portfolio test suite/build on PR #7 and merge after review.
+4. Install the beta in Chromium and Firefox to complete interactive extension QA. Keep it labeled beta until that verification is complete.
+5. Submit to browser stores separately if store distribution is desired.
