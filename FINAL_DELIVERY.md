@@ -4,7 +4,7 @@ Updated: 2026-11-25. Statuses reflect checks performed against source, productio
 
 ## Product and source
 
-- **VERIFIED — GitHub repository:** [asintha1a/skipcam](https://github.com/asintha1a/skipcam) is public and maintained by Self Graphic Lab. The authenticated GitHub identity is `asintha1a`.
+- **VERIFIED — GitHub repository:** [asintha1a/skipcam](https://github.com/asintha1a/skipcam) is public and maintained by Self Graphic Lab. Its GitHub homepage now points to the official production domain, `https://skipcam.selfgraphic.tech/`. The authenticated GitHub identity is `asintha1a`.
 - **VERIFIED — Published source:** The standalone web toolkit and supporting documentation are committed on `main`; see the latest repository history for the current commit. The original QR Snip upstream remains fetch-only, and its MIT license, copyright and provenance remain preserved.
 - **VERIFIED — Product architecture:** The web app reuses the extension's decoder, encoder, parser, and URL inspection modules. Website output, Chromium extension, and Firefox extension build independently. The extension source still builds with the shared-module updates.
 
