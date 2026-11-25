@@ -27,7 +27,7 @@ function canvasCrop(bitmap, crop, maxSide, pad = false) {
   const w = Math.max(1, Math.round(width * scale));
   const h = Math.max(1, Math.round(height * scale));
   const margin = pad ? Math.ceil(Math.min(w, h) / 10) : 0;
-  const canvas = new OffscreenCanvas(w + 2 * margin, h + 2 * margin);
+  const canvas = typeof OffscreenCanvas !== 'undefined' ? new OffscreenCanvas(w + 2 * margin, h + 2 * margin) : Object.assign(document.createElement('canvas'), { width: w + 2 * margin, height: h + 2 * margin });
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   ctx.fillStyle = '#fff';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -48,12 +48,31 @@ export async function scanImage(file, selection) {
     const [x, y, width, height] = crop;
     const full = decodePixels(canvasCrop(bitmap, crop, 1400, true));
     if (full !== null) found.add(full);
-    // Overlapping windows recover spatially separated codes without contacting a service.
+    // Overlapping windows can recover separate symbols the single-result decoder misses.
     if (width >= 160 && height >= 160) {
-      const w = Math.ceil(width * 0.62);
-      const h = Math.ceil(height * 0.62);
-      for (const [left, top] of [[0, 0], [width - w, 0], [0, height - h], [width - w, height - h]]) {
-        const value = decodePixels(canvasCrop(bitmap, [x + left, y + top, w, h], 1000, true));
+      let windows;
+      if (width / height >= 1.4) {
+        const w = Math.min(width, Math.ceil(height * 1.2));
+        const step = Math.max(1, Math.floor(w * 0.5));
+        const offsets = [];
+        for (let left = 0; left + w < width && offsets.length < 8; left += step) offsets.push(left);
+        offsets.push(width - w);
+        windows = [...new Set(offsets)].map(left => [left, 0, w, height]);
+      } else if (height / width >= 1.4) {
+        const h = Math.min(height, Math.ceil(width * 1.2));
+        const step = Math.max(1, Math.floor(h * 0.5));
+        const offsets = [];
+        for (let top = 0; top + h < height && offsets.length < 8; top += step) offsets.push(top);
+        offsets.push(height - h);
+        windows = [...new Set(offsets)].map(top => [0, top, width, h]);
+      } else {
+        const w = Math.ceil(width * 0.62);
+        const h = Math.ceil(height * 0.62);
+        windows = [[0, 0, w, h], [width - w, 0, w, h], [0, height - h, w, h], [width - w, height - h, w, h],
+          [Math.floor((width - w) / 2), Math.floor((height - h) / 2), w, h]];
+      }
+      for (const [left, top, cropWidth, cropHeight] of windows) {
+        const value = decodePixels(canvasCrop(bitmap, [x + left, y + top, cropWidth, cropHeight], 1000, true));
         if (value !== null) found.add(value);
       }
     }

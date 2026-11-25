@@ -1,0 +1,21 @@
+{
+  "id": "/",
+  "name": "SkipCam — Skip the camera. Scan anyway.",
+  "short_name": "SkipCam",
+  "description": "Free, private QR scanning and generation in your browser.",
+  "start_url": "/scan/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "orientation": "any",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    {"src": "/media/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/media/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ],
+  "shortcuts": [
+    {"name": "Scan a QR code", "url": "/scan/", "icons": [{"src": "/media/app-icon-512.png", "sizes": "512x512"}]},
+    {"name": "Generate a QR code", "url": "/generate/", "icons": [{"src": "/media/app-icon-512.png", "sizes": "512x512"}]}
+  ]
+}

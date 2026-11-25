@@ -1,9 +1,9 @@
 <div align="center">
-  <a href="https://skipcam.vercel.app/"><img src="assets/brand/social-preview.png" alt="SkipCam. Skip the camera. Scan anyway. By Self Graphic Lab." width="100%"></a>
+  <a href="https://skipcam.selfgraphic.tech/"><img src="assets/brand/social-preview.png" alt="SkipCam. Skip the camera. Scan anyway. By Self Graphic Lab." width="100%"></a>
 
   <h1>skipcam.</h1>
   <p><strong>Skip the camera. Scan anyway.</strong></p>
-  <p>Scan, generate and inspect QR codes directly in your browser. No phone, no camera, no unnecessary steps.</p>
+  <p>Scan, generate and inspect QR codes directly in your browser. Your phone can sit this one out.</p>
   <p><strong>By Self Graphic Lab</strong></p>
 
   <p>
@@ -13,25 +13,37 @@
     <img alt="Privacy-first" src="https://img.shields.io/badge/Privacy-local%20processing-C5FF41?labelColor=111111">
   </p>
 
-  <p><a href="https://skipcam.vercel.app/">Website</a> · <a href="https://github.com/asintha1a/skipcam/releases/tag/v1.0.0-beta.2">Download beta</a> · <a href="https://www.selfgraphic.tech/">Self Graphic Lab</a></p>
+  <p><a href="https://skipcam.selfgraphic.tech/">Open the web app</a> · <a href="https://github.com/asintha1a/skipcam/releases/tag/v1.0.0-beta.2">Download extension beta</a> · <a href="https://www.selfgraphic.tech/">Self Graphic Lab</a></p>
 </div>
 
-## Who said you need a phone to scan a QR code?
+## Two ways to skip the camera
 
-Grab a code from the page already open, read an image, or make one to share. SkipCam works locally and always lets you choose what happens next.
+SkipCam is a free, open-source QR toolkit from Self Graphic Lab. Use the web app for instant image scanning and QR generation, or install the browser extension for direct webpage region scanning and image context-menu actions. Both run QR processing locally and let you decide what happens next.
 
-> **Beta:** Automated tests and production builds pass. Full interactive browser verification is still pending. This is an evaluation release, not a stable browser compatibility claim. No browser-store listing is available.
+> **Extension beta:** The web app’s scanner, generator, crop selection, clipboard paste, drag-and-drop, screen-capture lifecycle and offline PWA behavior have passed automated Chrome testing in an isolated profile. The browser extension remains an evaluation release while its full interactive popup and browser matrix QA is pending. No browser-store listing is available.
 
 ## What it does
 
 - **Scan the screen:** select a visible region with the toolbar action or <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd>.
 - **Scan images:** upload, drop, paste or right-click an image to decode it locally.
+- **Use the web app now:** scan an image or screenshot, optionally crop it, paste from the clipboard, or choose a browser-approved screen capture at [skipcam.selfgraphic.tech](https://skipcam.selfgraphic.tech/). The browser chooser appears only after you click **Scan screen**; a still frame is captured and sharing stops before decoding.
 - **Generate QR codes:** create URLs, text, email, telephone, SMS, Wi-Fi and contact codes; export PNG or SVG.
 - **Understand results:** identify common content types, inspect destinations and see offline URL warnings before deciding what to do.
 - **Keep a private history:** optionally save eligible results locally. History is off by default; sensitive values are excluded.
 - **Set your workspace:** choose system, light or dark appearance and adjust history and generation defaults.
 
-No uploads, tracking, accounts or backend. SkipCam does not check live phishing or malware reputation, automatically open links, connect to Wi-Fi, send messages or place calls. URL checks are offline heuristics and cannot guarantee safety. Read [PRIVACY.md](PRIVACY.md) and [SECURITY.md](SECURITY.md).
+## Web app screenshots
+
+These are captures of the working SkipCam web app. The browser-based app and extension share their local QR processing modules.
+
+<p><img src="assets/screenshots/web-app-scanner.png" alt="SkipCam scanner interface" width="49%"> <img src="assets/screenshots/web-app-generator.png" alt="SkipCam generator with a live QR preview and export controls" width="49%"></p>
+<p><img src="assets/screenshots/web-app-result.png" alt="Decoded QR result with destination details and explicit open action" width="49%"> <img src="assets/screenshots/web-app-history.png" alt="Optional local scan history interface" width="49%"></p>
+
+No uploads, tracking, accounts or backend. The installable web app caches only application files and static product screenshots for offline use; it never caches user images, screen captures or decoded values. Web history is separately stored in local browser storage and disabled by default. SkipCam does not check live phishing or malware reputation, automatically open links, connect to Wi-Fi, send messages or place calls. URL checks are offline heuristics and cannot guarantee safety. Read [PRIVACY.md](PRIVACY.md) and [SECURITY.md](SECURITY.md).
+
+### Web app
+
+Visit [skipcam.selfgraphic.tech](https://skipcam.selfgraphic.tech/) and start scanning without an extension. Shareable tools are available at [/scan](https://skipcam.selfgraphic.tech/scan/), [/generate](https://skipcam.selfgraphic.tech/generate/) and [/history](https://skipcam.selfgraphic.tech/history/). The PWA can be installed where supported and works offline after its app files are cached. Screen capture depends on browser support and always uses the browser’s native sharing prompt.
 
 ## Install the beta
 
@@ -51,9 +63,10 @@ npm ci
 npm test
 npm run lint
 npm run build
+npm run test:browser
 ```
 
-Packages are generated in `dist/`. See [TESTING.md](TESTING.md) for the current verification checklist. The landing page and its local demos are in `site/`.
+Packages are generated in the dist directory. See [TESTING.md](TESTING.md) for the current verification checklist. The web app source is in site and reuses the extension’s decoder, encoder, URL inspector and content parser.
 
 ## License
 

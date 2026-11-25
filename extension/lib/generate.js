@@ -63,9 +63,9 @@ export function matrix(value, level = 'M') {
     Array.from({ length: qr.getModuleCount() }, (_, x) => qr.isDark(y, x)));
 }
 
-export function renderMatrix(code, { foreground = '#111111', background = '#ffffff', size = 512 } = {}) {
-  if (!/^#[a-f\d]{6}$/i.test(foreground) || !/^#[a-f\d]{6}$/i.test(background) || ![256, 512, 1024].includes(size)) throw Error('Choose valid colors and size.');
-  const dimension = code.length + 8;
+export function renderMatrix(code, { foreground = '#111111', background = '#ffffff', size = 512, quietZone = 4 } = {}) {
+  if (!/^#[a-f\d]{6}$/i.test(foreground) || !/^#[a-f\d]{6}$/i.test(background) || ![256, 512, 1024].includes(size) || !Number.isInteger(quietZone) || quietZone < 0 || quietZone > 16) throw Error('Choose valid colors, size and quiet zone.');
+  const dimension = code.length + quietZone * 2;
   const canvas = document.createElement('canvas');
   canvas.width = canvas.height = size;
   const context = canvas.getContext('2d');
@@ -77,8 +77,8 @@ export function renderMatrix(code, { foreground = '#111111', background = '#ffff
   const paths = [];
   code.forEach((row, y) => row.forEach((on, x) => {
     if (!on) return;
-    context.fillRect(offset + (x + 4) * scale, offset + (y + 4) * scale, scale, scale);
-    paths.push(`M${x + 4} ${y + 4}h1v1h-1z`);
+    context.fillRect(offset + (x + quietZone) * scale, offset + (y + quietZone) * scale, scale, scale);
+    paths.push('M' + (x + quietZone) + ' ' + (y + quietZone) + 'h1v1h-1z');
   }));
   const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + dimension + ' ' + dimension +
     '" width="' + size + '" height="' + size + '" shape-rendering="crispEdges"><path fill="' + background +

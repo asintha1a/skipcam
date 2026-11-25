@@ -1,34 +1,77 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="Scan a QR code online from an image, screenshot or screen capture. Generate codes locally. Free, private and no phone required.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SkipCam — Skip the camera. Scan anyway.">
+<meta property="og:description" content="Scan, generate and inspect QR codes directly in your browser. Your phone can sit this one out.">
+<!-- deploy-metadata -->
+<link rel="icon" type="image/svg+xml" href="/media/favicon.svg">
+<link rel="alternate icon" href="/media/favicon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/site.css">
+<script type="module" src="/app.js"></script>
 <title>SkipCam — Skip the camera. Scan anyway.</title>
-<meta name="description" content="Scan, generate and inspect QR codes directly in your browser. No phone, no camera, no unnecessary steps.">
-<meta property="og:type" content="website"><meta property="og:title" content="SkipCam — Skip the camera. Scan anyway."><meta property="og:description" content="Who said you need a phone to scan a QR code? SkipCam scans, generates and inspects QR codes locally in your browser.">
-<meta name="theme-color" content="#111111"><!-- deploy-metadata -->
-<link rel="icon" type="image/svg+xml" href="media/favicon.svg"><link rel="alternate icon" href="media/favicon.png"><link rel="stylesheet" href="site.css"><script type="module" src="legacy-domain-redirect.js"></script><script type="module" src="demo.js"></script>
-</head><body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="wrap top"><a class="brand" href="#"><img src="media/symbol.svg" alt="" width="35" height="35"><span>skipcam.</span></a><nav aria-label="Main"><a href="#demo">Try it</a><a href="#install">Install</a><a href="https://github.com/asintha1a/skipcam">GitHub ↗</a></nav></header>
+</head>
+<body>
+<a class="skip" href="#tool">Skip to QR tools</a>
+<header class="wrap top">
+  <a class="brand" href="/" aria-label="SkipCam home"><img src="/media/symbol.svg" alt="" width="34" height="34"><span>skipcam.</span></a>
+  <nav aria-label="Main navigation">
+    <a href="/scan" data-route>Scanner</a><a href="/generate" data-route>Generator</a><a href="/history" data-route>History</a>
+    <a href="/extension" data-route>Get Extension</a><a href="https://github.com/asintha1a/skipcam" rel="noreferrer">GitHub ↗</a>
+  </nav>
+</header>
 <main id="main">
-<section class="wrap hero"><div><p class="overline">SELF GRAPHIC LAB / BROWSER TOOL</p><h1>Who said you need a phone to scan a QR code?</h1><p class="intro">Scan, generate and inspect QR codes directly in your browser. Your phone can sit this one out.</p>
-<div class="buttons"><a class="button primary" href="#install">Get SkipCam ↓</a><a class="button" href="https://github.com/asintha1a/skipcam">View on GitHub ↗</a></div>
-<p class="platforms">Chromium browsers · Firefox package (browser QA pending)</p></div>
-<figure class="preview"><img src="media/cover.png" alt="SkipCam promotional artwork, not a browser screenshot" width="1600" height="900"><figcaption>SkipCam identity artwork · by Self Graphic Lab</figcaption></figure></section>
-<section class="wrap section" id="demo"><p class="overline">TRY SKIPCAM</p><h2>One screen is enough.</h2><p>Decode a sample, or make your own QR code. Both demos run in this tab.</p>
-<div class="demo-grid"><article><h3>Scan a sample</h3><label for="sample">Sample content</label><select id="sample"><option value="https://example.org/">Website address</option><option value="Your phone can sit this one out.">Plain text</option><option value="http://example.org/scan">Unencrypted link</option></select><canvas id="sample-code" role="img" aria-label="Sample QR code" width="256" height="256"></canvas>
-<button class="button primary" id="scan">Scan sample</button><p id="scan-status" class="result" aria-live="polite"></p></article>
-<article><h3>Generate a QR code</h3><form id="generate"><label for="demo-text">Text or URL</label><input id="demo-text" maxlength="500" value="https://example.org/" required><canvas id="generated-code" role="img" aria-label="Generated QR code" width="256" height="256"></canvas><div class="buttons"><button class="button primary">Generate code</button><button class="button" type="button" id="download">Download PNG</button></div><p id="generate-status" class="result" aria-live="polite"></p></form></article></div></section>
-<section class="wrap section" id="features"><p class="overline">THE TOOLKIT</p><h2>Less reaching. More scanning.</h2>
-<div class="features"><article><h3>Scan what’s already on screen</h3><p>Select a region, scan a visible image from its menu, or drop a local file into SkipCam.</p></article><article><h3>Know where a link goes</h3><p>See the full destination and offline warnings for shorteners, embedded credentials, HTTP and unusual hosts.</p></article><article><h3>Make a code worth sharing</h3><p>Create QR codes for URLs, text, messages, contacts and Wi-Fi. Choose your colors and export PNG or SVG.</p></article></div>
-<p class="subtle">The promotional artwork above is not an interface screenshot. Product screenshots will be added after browser verification.</p></section>
-<section class="wrap section privacy"><div><p class="overline">NO PHONE. NO UPLOADS. NO DRAMA.</p><h2>Your pixels stay yours.</h2></div><div><p>SkipCam processes images and QR content on your device. Screenshots are kept briefly in memory. Optional history is off by default and saves only eligible HTTPS site root addresses.</p><a href="https://github.com/asintha1a/skipcam/blob/main/PRIVACY.md">Read the privacy policy ↗</a></div></section>
-<section class="wrap section" id="install"><p class="overline">INSTALL / BETA</p><h2>Try SkipCam beta</h2><p>SkipCam v1.0.0-beta.2 is an evaluation release. Automated tests and builds pass; full interactive browser QA is pending.</p><div class="install-grid">
-<article><h3>Chrome, Edge and Brave</h3><a class="button primary" href="https://github.com/asintha1a/skipcam/releases/download/v1.0.0-beta.2/skipcam-chromium-v1.0.0-beta.2.zip">Download Chromium beta ZIP ↓</a><ol><li>Extract the Chromium ZIP.</li><li>Open your browser’s Extensions page and enable Developer mode.</li><li>Choose <strong>Load unpacked</strong> and select the extracted folder.</li></ol></article>
-<article><h3>Firefox 140+</h3><a class="button" href="https://github.com/asintha1a/skipcam/releases/download/v1.0.0-beta.2/skipcam-firefox-v1.0.0-beta.2.zip">Download Firefox beta ZIP ↓</a><ol><li>Extract the Firefox ZIP.</li><li>Open <code>about:debugging#/runtime/this-firefox</code>.</li><li>Choose <strong>Load Temporary Add-on</strong> and select the extracted <code>manifest.json</code>. Permanent installation requires Mozilla signing.</li></ol></article></div></section>
-<section class="wrap section faq"><p class="overline">FAQ</p><h2>Good to know</h2>
-<details><summary>Does SkipCam scan the whole desktop?</summary><p>Screen scan captures the visible active browser tab. For codes elsewhere, upload or paste a screenshot.</p></details>
-<details><summary>Does a URL warning check the destination online?</summary><p>Warnings come from offline heuristics. SkipCam does not check live phishing or malware reputation and never opens a decoded link automatically.</p></details>
-<details><summary>Can I scan multiple QR codes?</summary><p>SkipCam can recover multiple distinct codes when they are spaced apart. If a code is missed, select it by itself.</p></details>
-<details><summary>Is SkipCam open source?</summary><p>Yes. SkipCam is distributed under the MIT License. Read the license and browse the source on <a href="https://github.com/asintha1a/skipcam">GitHub</a>.</p></details></section>
-</main><footer class="wrap bottom"><a class="brand" href="#"><img src="media/symbol.svg" alt="" width="32" height="32"><span>skipcam.</span></a><a href="https://www.selfgraphic.tech/">by Self Graphic Lab ↗</a><a href="https://github.com/asintha1a/skipcam">Source code ↗</a></footer>
+  <section class="wrap hero">
+    <div><p class="overline">SELF GRAPHIC LAB / FREE QR TOOLKIT</p><h1>Skip the camera.<br><span>Scan anyway.</span></h1>
+      <p class="intro">Your phone can sit this one out. Scan, generate and inspect QR codes right here, on this device.</p>
+      <div class="hero-actions"><a class="button primary" href="/scan" data-route>Open scanner ↓</a><span class="local-note"><i aria-hidden="true"></i> Processing stays on your device</span></div>
+    </div>
+    <div class="hero-mark" aria-hidden="true"><img src="/media/symbol.svg" alt=""></div>
+  </section>
+
+  <section id="tool" class="wrap toolkit" aria-labelledby="tool-title">
+    <div class="tool-heading"><div><p class="overline">SKIPCAM WEB APP</p><h2 id="tool-title">Your QR toolkit.</h2></div>
+      <div class="tool-meta"><span id="offline-status" aria-live="polite">Ready in your browser</span><button id="install-app" class="button small" type="button" hidden>Install app</button></div>
+    </div>
+    <div class="tool-tabs" role="tablist" aria-label="QR tools">
+      <a role="tab" href="/scan" data-route data-tab="scan">Scan</a>
+      <a role="tab" href="/generate" data-route data-tab="generate">Generate</a>
+      <a role="tab" href="/history" data-route data-tab="history">History</a>
+    </div>
+    <section id="tool-pane" class="tool-pane" aria-live="off"></section>
+    <p id="app-status" class="app-status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="wrap section split">
+    <div><p class="overline">TWO WAYS TO SKIP THE CAMERA</p><h2>Use it now.<br>Install when ready.</h2></div>
+    <div class="choice-grid">
+      <article><span class="choice-index">01 / WEB APP</span><h3>Instant access</h3><p>Scan images, screenshots and a screen selection. Make a QR code without installing anything.</p><a href="/scan" data-route>Use the web app ↗</a></article>
+      <article><span class="choice-index">02 / EXTENSION</span><h3>Right in your browser</h3><p>Scan a region of a webpage or right-click an image with the SkipCam extension.</p><a href="/extension" data-route>Get the extension ↗</a></article>
+    </div>
+  </section>
+  <section class="wrap section app-shots">
+    <p class="overline">THE WEB APP / IN ACTION</p><h2>Skip the detour.</h2>
+    <div class="shot-grid">
+      <figure><img src="/media/web-app-scanner.png" alt="SkipCam web app scanner interface" loading="lazy" width="1160" height="600"><figcaption>Scan an image, screenshot or captured frame.</figcaption></figure>
+      <figure><img src="/media/web-app-generator.png" alt="SkipCam QR generator with live preview and export options" loading="lazy" width="1160" height="600"><figcaption>Build and export a QR code locally.</figcaption></figure>
+      <figure><img src="/media/web-app-result.png" alt="SkipCam scan result with destination host and explicit open action" loading="lazy" width="1160" height="600"><figcaption>See the destination before you open it.</figcaption></figure>
+    </div>
+  </section>
+  <section class="wrap section benefits"><p class="overline">PRIVATE BY DESIGN</p><h2>Local pixels.<br>Zero detours.</h2>
+    <div class="benefit-grid"><article><b>01</b><h3>No second device</h3><p>Your laptop or phone browser can scan the image already in front of you.</p></article><article><b>02</b><h3>Private processing</h3><p>QR decoding and generation run locally. Images and screen captures are never uploaded.</p></article><article><b>03</b><h3>Fast by default</h3><p>No login, backend or external QR API. Open the tool and get to it.</p></article></div>
+  </section>
+  <section class="wrap section privacy"><div><p class="overline">NO UPLOADS. NO DRAMA.</p><h2>Your pixels stay yours.</h2></div><div><p>SkipCam does not send QR images, screen captures or decoded values to a server. Optional web history is stored in this browser only, is off by default, and keeps only eligible public HTTPS homepages.</p><p>URL warnings use offline heuristics. They are not a live reputation check or a safety guarantee. Opening a decoded link always takes an explicit click.</p><a href="https://github.com/asintha1a/skipcam/blob/main/PRIVACY.md">Read privacy details ↗</a></div></section>
+  <section class="wrap section faq"><p class="overline">GOOD TO KNOW</p><h2>FAQ</h2>
+    <details><summary>Can I scan a QR code from a screenshot?</summary><p>Yes. Upload or drag in PNG, JPEG, WebP, GIF, BMP or AVIF images, or paste a screenshot from your clipboard.</p></details>
+    <details><summary>Can I scan a browser tab or screen?</summary><p>Choose Scan screen and select a tab, window or display in your browser's native sharing dialog. SkipCam captures one frame, immediately stops the stream and decodes locally. Browser support varies.</p></details>
+    <details><summary>Does SkipCam open decoded links automatically?</summary><p>No. You can inspect the destination and offline warnings, then choose whether to open it.</p></details>
+    <details><summary>Is SkipCam free and open source?</summary><p>Yes. Both the web app and extension are free. SkipCam is MIT licensed and maintained by Self Graphic Lab. Upstream attribution is in the repository's Attribution and License section.</p></details>
+  </section>
+</main>
+<footer class="wrap bottom"><a class="brand" href="/"><img src="/media/symbol.svg" alt="" width="30" height="30"><span>skipcam.</span></a><span>Free and open source · by <a href="https://www.selfgraphic.tech/">Self Graphic Lab</a></span><a href="https://github.com/asintha1a/skipcam">Source code ↗</a></footer>
 </body></html>
