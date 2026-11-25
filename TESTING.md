@@ -12,9 +12,9 @@ Run these from the repository root with Node.js 22 or newer:
 
 The Node suite covers QR encoding and decoding, content classification, URL inspection, history behavior, image validation, crop coordinates and extension message validation. The build produces independent Chromium, Firefox and website outputs under dist/.
 
-The browser suite uses an installed Google Chrome executable in a temporary isolated profile. It does not open or read a personal browser profile. Set CHROME_EXECUTABLE if Chrome is installed elsewhere. It exercises the live web app UI, seven generator formats, PNG/SVG downloads, image upload, clipboard paste, drag-and-drop, crop mapping, screen-capture lifecycle and track shutdown, URL warnings, inert malicious text, multi-QR images, mobile width and offline PWA generation.
+The browser suite uses an installed Google Chrome executable in a temporary isolated profile. It does not open or read a personal browser profile. Set CHROME_EXECUTABLE if Chrome is installed elsewhere. By default it tests the local production build; set `SKIPCAM_QA_URL=https://skipcam.selfgraphic.tech` to run the same suite against production. It exercises the app UI, seven generator formats, PNG/SVG downloads, image upload, clipboard paste, drag-and-drop, crop mapping, screen-capture lifecycle and track shutdown, URL warnings, inert malicious text, multi-QR images, mobile width and offline PWA generation.
 
-Verified on November 25, 2026: npm test passed 10/10, lint and production builds completed, and 15 browser scenarios passed in installed Chrome. This was an automated app-level screen-capture simulation. The native screen-sharing chooser and actual user-selected tab/window/display still require a manual check. The website has not been verified in Firefox or Safari or on a physical mobile device.
+Verified on November 25, 2026: `npm test` passed 10/10, lint and independent Chromium, Firefox and website production builds completed, and 15 browser scenarios passed against the deployed production site in installed Chrome. This was an automated app-level screen-capture simulation. The native screen-sharing chooser and actual user-selected tab/window/display still require a manual check. The website has not been verified in Firefox or Safari or on a physical mobile device.
 
 ## Web app manual checks
 

@@ -40,8 +40,9 @@ const server = createServer(async (request, response) => {
     }).end(data);
   } catch { response.writeHead(404).end('Not found'); }
 });
-await new Promise(resolveListen => server.listen(0, '127.0.0.1', resolveListen));
-const origin = 'http://127.0.0.1:' + server.address().port;
+const remoteOrigin = process.env.SKIPCAM_QA_URL;
+if (!remoteOrigin) await new Promise(resolveListen => server.listen(0, '127.0.0.1', resolveListen));
+const origin = remoteOrigin ? new URL(remoteOrigin).origin : 'http://127.0.0.1:' + server.address().port;
 const profile = await mkdtemp(join(tmpdir(), 'skipcam-web-qa-'));
 console.log('Starting isolated Chrome at ' + origin);
 let context;
@@ -265,6 +266,6 @@ try {
   console.log('Verified ' + checks.length + ' browser scenarios using ' + basename(executablePath) + ' in an isolated temporary profile.');
 } finally {
   if (context) await context.close();
-  server.close();
+  if (server.listening) server.close();
   await rm(profile, { recursive: true, force: true });
 }

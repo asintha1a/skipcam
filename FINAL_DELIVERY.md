@@ -1,49 +1,53 @@
-# SkipCam delivery report
+# SkipCam web application delivery
 
-Updated: 2026-11-25. Statuses describe what was checked, not what is merely present in source.
+Updated: 2026-11-25. Statuses reflect checks performed against source, production and release services.
 
 ## Product and source
 
-- **VERIFIED — Repository:** [asintha1a/skipcam](https://github.com/asintha1a/skipcam) is public. Authenticated GitHub CLI identity is `asintha1a`. Description, homepage, and topics identify SkipCam and Self Graphic Lab.
-- **VERIFIED — Published commit:** `4094f11c0e9a1ff91ec68f68f733ea2f8e666839` on `main`; local checkout is clean after this report is committed.
-- **VERIFIED — Remotes and history:** `origin` points to the renamed repository. The original QR Snip repository remains the fetch-only `upstream`; no upstream pushes or history rewrites were made.
-- **VERIFIED — Legal attribution:** The full MIT license and Isaac Joel Mithran copyright remain intact. Third-party notices retain the necessary upstream acknowledgment. GitHub's Contributors view reflects historical commits and identities; no authorship was reassigned.
-- **VERIFIED — Branding audit:** Current interface, manifests, site, release packages, and documentation use SkipCam. Remaining SnipRay text is limited to preserved legacy-domain redirects, historical beta.1 packages, the original license/provenance, and compatibility identifiers kept to avoid disrupting existing installations or in-progress extension state.
-- **VERIFIED — Secret-file audit:** No tracked environment files, private keys, or credential files were found. Local Vercel configuration is ignored.
+- **VERIFIED — GitHub repository:** [asintha1a/skipcam](https://github.com/asintha1a/skipcam) is public and maintained by Self Graphic Lab. The authenticated GitHub identity is `asintha1a`.
+- **VERIFIED — Published source:** The standalone web toolkit and supporting documentation are committed on `main`; see the latest repository history for the current commit. The original QR Snip upstream remains fetch-only, and its MIT license, copyright and provenance remain preserved.
+- **VERIFIED — Product architecture:** The web app reuses the extension's decoder, encoder, parser, and URL inspection modules. Website output, Chromium extension, and Firefox extension build independently. The extension source still builds with the shared-module updates.
 
-## Brand assets
+## Production website
 
-- **VERIFIED — Brand source and exports:** `assets/brand/` contains the SkipCam logo symbol, wordmark and lockup, black/white and transparent exports, extension icons, marketing icons, favicon, social preview, portfolio cover, and identity sheet.
-- **UNVERIFIED — GitHub social preview setting:** The preview artwork is present at `assets/brand/social-preview.png` and the site serves its Open Graph image. GitHub still shows its generated repository card; repository settings did not open in the available browser session, so the image has not been confirmed as uploaded in GitHub Settings → Social preview.
+- **VERIFIED — Official production URL:** [https://skipcam.selfgraphic.tech/](https://skipcam.selfgraphic.tech/) responds HTTP 200 and serves the new tool-first SkipCam web application.
+- **VERIFIED — Shareable routes:** `/scan/`, `/generate/`, and `/history/` respond HTTP 200. The web manifest, service worker, `robots.txt`, and `sitemap.xml` also respond HTTP 200.
+- **VERIFIED — Vercel production deployment:** [Deployment](https://skipcam-5dx5mvmse-asinthadilhara37-collabs-projects.vercel.app/) reached READY. Deployment ID: `dpl_EecK6YmY2eyrC4LnsXPdfLv9xeMn`.
+- **VERIFIED — Browser functionality:** 15 automated scenarios passed against the live custom domain in installed Chrome using a temporary isolated profile. Tests cover image upload/decode, all seven formats, PNG/SVG export, clipboard paste, drag-and-drop, crop mapping, multiple QR detection, offline URL warnings, local history, mobile layout, PWA offline operation, and simulated screen capture with immediate stream shutdown. No page or console errors occurred.
+- **VERIFIED — Privacy behavior in tested flows:** QR processing is local; history starts disabled; URLs require an explicit open click; user images, scan results and screen streams are not cached by the service worker.
+- **COMPLETED BUT UNVERIFIED — Native screen-share chooser:** The `getDisplayMedia()` path and stream shutdown were exercised with an isolated test stream. The actual browser chooser and selecting a real tab/window/display still need a manual browser check.
 
-## Release and verification
+## Features delivered
 
-- **VERIFIED — Beta release:** [v1.0.0-beta.2](https://github.com/asintha1a/skipcam/releases/tag/v1.0.0-beta.2) is published as a prerelease; beta.1 remains available as historical release. No stable release or browser-store listing is claimed.
-- **VERIFIED — Chromium package:** [Download SkipCam for Chromium](https://github.com/asintha1a/skipcam/releases/download/v1.0.0-beta.2/skipcam-chromium-v1.0.0-beta.2.zip). Local SHA-256: `3472073378e6604c0688c5551f9e38b81bdfbf940b1d69a7b9b46da34b2553e3`.
-- **VERIFIED — Firefox package:** [Download SkipCam for Firefox](https://github.com/asintha1a/skipcam/releases/download/v1.0.0-beta.2/skipcam-firefox-v1.0.0-beta.2.zip). Local SHA-256: `be770ed48b08b6d888c2ed8da2368dbe80dc7b355b9a50db2912a69f0e3d8d13`.
-- **VERIFIED — Package contents:** Both archives pass ZIP integrity checks and include the SkipCam Manifest V3 name, expected files, and browser-specific manifest configuration. Extension manifest version is valid `1.0.0`; beta designation is carried in release tag and package names. Both download URLs returned HTTP 200.
-- **VERIFIED — Automated checks:** `npm test` passed 10/10; `npm run lint` and `npm run build` completed successfully on 2026-11-25.
-- **UNVERIFIED — Extension browser QA:** Full interactive popup, capture, context-menu, history, and settings behavior has not been verified in an installed browser. The beta release remains evaluation-only. Do not infer browser compatibility from successful builds alone.
-- **UNVERIFIED — Store availability:** No Chrome Web Store or Firefox Add-ons publication is claimed. Firefox permanent installation requires a signed add-on; the ZIP is suitable for temporary testing through `about:debugging`.
+- **VERIFIED — Scanner:** Image upload, drag and drop, paste event, explicit paste button, optional crop, browser-approved screen capture, full-frame scan, multi-code results, decoded content classification, copy actions, explicit link opening and offline URL warnings.
+- **VERIFIED — Generator:** URL, plain text, email, telephone, SMS, Wi-Fi and contact-card QR formats; live preview; color, size, error correction and quiet-zone controls; PNG/SVG download and image copy when supported.
+- **VERIFIED — History:** Optional per-browser local history with search, filtering, copy, per-item delete and clear controls; disabled by default and sensitive values excluded.
+- **VERIFIED — PWA:** Installable manifest, app icons, service worker cache versioning, offline app shell and offline generation after first cache. User images, screen captures and decoded values are excluded from the cache.
 
-## Website and legacy links
+## Tests and browser coverage
 
-- **VERIFIED — Production site:** [https://skipcam.vercel.app/](https://skipcam.vercel.app/) returned HTTP 200. Live title, canonical URL, Open Graph image, beta.2 download references, `robots.txt`, and `sitemap.xml` were checked.
-- **VERIFIED — Landing-page interaction checks:** Local browser QA exercised the sample QR scanner and generator; the sample decoded to `https://example.org/`, generated output appeared, a 390px mobile viewport had no horizontal overflow, and no page errors were observed.
-- **VERIFIED — Old Vercel URL redirect:** `https://snipray.vercel.app/` and a nested path return permanent redirects to `https://skipcam.vercel.app/`.
-- **COMPLETED BUT UNVERIFIED — Custom domain:** Added the Cloudflare DNS-only CNAME `skipcam` → `189cd2e8979e9fb5.vercel-dns-017.com.` with Auto TTL. The record is visible in Cloudflare, public DNS resolvers return it, and Vercel reports the domain configured and verified for the SkipCam project. The local system resolver and Chrome still report NXDOMAIN, and HTTPS has not yet succeeded from this environment, so the custom URL is not yet claimed as live.
-- **UNVERIFIED — Old custom-domain redirect:** The redirect is configured, but the old `snipray.selfgraphic.tech` hostname is not verified because its DNS is not configured.
+- **VERIFIED — Automated tests:** `npm test` passed all 10 tests.
+- **VERIFIED — Lint and builds:** `npm run lint` and `npm run build` completed; Chromium, Firefox and website outputs were generated independently.
+- **VERIFIED — Production browser suite:** `SKIPCAM_QA_URL=https://skipcam.selfgraphic.tech npm run test:browser` passed all 15 scenarios in installed Google Chrome with an isolated temporary profile.
+- **UNVERIFIED — Native browser and device matrix:** Native screen chooser flow, Firefox/Safari web-app behavior, physical mobile browsers and full interactive extension behavior remain manual checks. The automation simulates screen-share stream acquisition and does not access a personal browser profile.
+- **UNVERIFIED — Browser stores:** No Chrome Web Store or Firefox Add-ons listing is claimed. Permanent Firefox installation requires Mozilla signing.
 
-## Portfolio
+## Releases and downloads
 
-- **VERIFIED — Portfolio change prepared:** [Self Graphic Lab PR #7](https://github.com/asintha1a/self-graphic-lab-website/pull/7) remains open, mergeable, and on its existing feature branch. It replaces the SnipRay project entry with SkipCam, adds the `/work/skipcam` case study and new cover, and redirects the old case-study route.
-- **VERIFIED — Preview route:** The PR preview's `/work/skipcam` route returned HTTP 200 with SkipCam metadata; `/work/snipray` returned HTTP 308 to the new route.
-- **UNVERIFIED — Portfolio tests/build and production listing:** The portfolio's full test suite and production build have not been run locally. PR #7 has not been merged, so the production portfolio does not yet include this case study.
+- **VERIFIED — Existing beta release:** [v1.0.0-beta.2](https://github.com/asintha1a/skipcam/releases/tag/v1.0.0-beta.2) and its original Chromium and Firefox package links remain available.
+- **UNVERIFIED — Package currency:** The web app work updates shared decoder/generator source. The existing beta.2 release archives were not replaced or republished; build outputs in `dist/` contain the current source. Publish a new clearly labeled extension prerelease before treating the downloadable beta.2 archives as current with these shared-module changes.
 
-## Remaining manual actions
+## Self Graphic Lab portfolio
 
-1. Upload `assets/brand/social-preview.png` in repository **Settings → Social preview**.
-2. Allow DNS caches and Vercel TLS provisioning to settle, then verify `https://skipcam.selfgraphic.tech/` in a browser. The Cloudflare record is already present and Vercel marks the hostname verified.
-3. Run the portfolio test suite/build on PR #7 and merge after review.
-4. Install the beta in Chromium and Firefox to complete interactive extension QA. Keep it labeled beta until that verification is complete.
-5. Submit to browser stores separately if store distribution is desired.
+- **VERIFIED — Existing PR updated:** [Self Graphic Lab portfolio PR #7](https://github.com/asintha1a/self-graphic-lab-website/pull/7) remains open on `feat/snipray-portfolio`. The branch now describes SkipCam as both a web QR toolkit and browser extension, updates the canonical product URL and SEO copy, and includes three actual scanner/generator/result screenshots.
+- **VERIFIED — PR branch commit:** `a2017dd7aec6499f872536508bc91bb96716b5ea`.
+- **UNVERIFIED — Portfolio preview/build:** Vercel preview is rebuilding after the update. Portfolio-specific tests/build and a live production case-study route have not been verified. The PR was not merged, so the production portfolio remains unchanged.
+
+## Known limitations and manual actions
+
+1. Manually click **Scan screen**, use the native browser picker to select a real tab/window/display, capture and crop a QR code, then confirm the share indicator stops immediately.
+2. Verify the web app in Firefox, Safari and a physical mobile browser; the current browser matrix is Chrome only.
+3. Complete popup/context-menu/settings QA for the extension in Chromium and Firefox before calling the extension fully verified.
+4. Publish a new beta extension package if the current shared decoder/generator source should be included in downloadable extension archives; beta.2 remains an earlier artifact.
+5. Review the updated portfolio preview, run its tests/build, and merge PR #7 if approved.
+6. Browser-store listings require separate submissions and approval; Firefox permanent installation requires signing.
