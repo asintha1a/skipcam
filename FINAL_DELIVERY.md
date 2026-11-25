@@ -31,7 +31,7 @@ Updated: 2026-11-25. Statuses describe what was checked, not what is merely pres
 - **VERIFIED — Production site:** [https://skipcam.vercel.app/](https://skipcam.vercel.app/) returned HTTP 200. Live title, canonical URL, Open Graph image, beta.2 download references, `robots.txt`, and `sitemap.xml` were checked.
 - **VERIFIED — Landing-page interaction checks:** Local browser QA exercised the sample QR scanner and generator; the sample decoded to `https://example.org/`, generated output appeared, a 390px mobile viewport had no horizontal overflow, and no page errors were observed.
 - **VERIFIED — Old Vercel URL redirect:** `https://snipray.vercel.app/` and a nested path return permanent redirects to `https://skipcam.vercel.app/`.
-- **BLOCKED — Custom domain:** `skipcam.selfgraphic.tech` does not resolve yet. Add a Cloudflare DNS-only CNAME: name `skipcam`, target `189cd2e8979e9fb5.vercel-dns-017.com.`, then verify the domain in Vercel. DNS was not modified.
+- **COMPLETED BUT UNVERIFIED — Custom domain:** Added the Cloudflare DNS-only CNAME `skipcam` → `189cd2e8979e9fb5.vercel-dns-017.com.` with Auto TTL. The record is visible in Cloudflare, public DNS resolvers return it, and Vercel reports the domain configured and verified for the SkipCam project. The local system resolver and Chrome still report NXDOMAIN, and HTTPS has not yet succeeded from this environment, so the custom URL is not yet claimed as live.
 - **UNVERIFIED — Old custom-domain redirect:** The redirect is configured, but the old `snipray.selfgraphic.tech` hostname is not verified because its DNS is not configured.
 
 ## Portfolio
@@ -43,7 +43,7 @@ Updated: 2026-11-25. Statuses describe what was checked, not what is merely pres
 ## Remaining manual actions
 
 1. Upload `assets/brand/social-preview.png` in repository **Settings → Social preview**.
-2. Add the custom-domain CNAME above, then verify it in Vercel.
+2. Allow DNS caches and Vercel TLS provisioning to settle, then verify `https://skipcam.selfgraphic.tech/` in a browser. The Cloudflare record is already present and Vercel marks the hostname verified.
 3. Run the portfolio test suite/build on PR #7 and merge after review.
 4. Install the beta in Chromium and Firefox to complete interactive extension QA. Keep it labeled beta until that verification is complete.
 5. Submit to browser stores separately if store distribution is desired.
