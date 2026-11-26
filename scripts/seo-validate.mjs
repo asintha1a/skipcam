@@ -8,6 +8,7 @@ const descriptions = new Set();
 const paths = new Set(routes.map(route => route.path));
 const sitemap = await readFile('dist/site/sitemap.xml', 'utf8');
 const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
+const llms = await readFile('dist/site/llms.txt', 'utf8');
 
 assert.ok(routes.length >= 10, 'route registry should contain the expected useful pages');
 for (const route of routes) {
@@ -25,7 +26,14 @@ for (const route of routes) {
   assert.match(html, /<article class="wrap route-copy">/, `server-rendered page content: ${route.path}`);
   const jsonLd = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
   assert.ok(jsonLd, `JSON-LD present: ${route.path}`);
-  assert.doesNotThrow(() => JSON.parse(jsonLd[1]), `JSON-LD parses: ${route.path}`);
+  let graph;
+  assert.doesNotThrow(() => { graph = JSON.parse(jsonLd[1])['@graph']; }, `JSON-LD parses: ${route.path}`);
+  assert.ok(graph.some(item => item['@type'] === 'Organization' && item.url === 'https://www.selfgraphic.tech/'), `publisher identity: ${route.path}`);
+  assert.ok(graph.some(item => item['@type'] === 'WebApplication' && item.name === 'SkipCam'), `product entity: ${route.path}`);
+  if (route.path !== '/') {
+    assert.ok(graph.some(item => item['@type'] === 'BreadcrumbList'), `breadcrumb schema: ${route.path}`);
+    assert.match(html, /<nav class="breadcrumbs" aria-label="Breadcrumb">/, `visible breadcrumb: ${route.path}`);
+  }
   const isNoindex = /<meta name="robots" content="noindex,follow">/.test(html);
   assert.equal(isNoindex, !route.indexable, `indexing directive matches route policy: ${route.path}`);
   assert.equal(sitemapUrls.includes(site + route.path), route.indexable, `sitemap membership: ${route.path}`);
@@ -36,6 +44,9 @@ for (const route of routes) {
     const normalized = pathname.endsWith('/') ? pathname : pathname + '/';
     assert.ok(paths.has(normalized) || pathname.endsWith('.css') || pathname.endsWith('.js') || pathname.endsWith('.webmanifest'), `internal URL resolves in registry: ${route.path} -> ${href}`);
   }
+  for (const path of ['/scan-qr-code-from-image/', '/scan-qr-code-without-phone/', '/wifi-qr-code-generator/', '/guides/why-a-qr-code-will-not-scan/']) {
+    assert.ok(html.includes('href="' + path + '"'), `important task route is internally linked: ${route.path} -> ${path}`);
+  }
   if (!route.tool) assert.doesNotMatch(html, /id="tool-pane"/, `non-tool content page excludes empty app: ${route.path}`);
 }
 
@@ -44,5 +55,8 @@ await access('dist/site/404.html');
 assert.match(await readFile('dist/site/404.html', 'utf8'), /name="robots" content="noindex,follow"/);
 const robots = await readFile('dist/site/robots.txt', 'utf8');
 assert.match(robots, new RegExp(`Sitemap: ${site.replaceAll('.', '\\.')}\/sitemap\\.xml`));
+assert.match(llms, /# SkipCam/);
+assert.match(llms, /maintained by Self Graphic Lab/i);
+for (const route of routes.filter(route => route.indexable)) assert.ok(llms.includes(site + route.path), `llms.txt documents ${route.path}`);
 assert.equal(sitemapUrls.length, routes.filter(route => route.indexable).length);
 console.log(`Validated ${routes.length} static routes, canonical metadata, JSON-LD, index directives, internal links, 404, robots and sitemap.`);

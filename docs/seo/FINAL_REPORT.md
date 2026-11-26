@@ -29,3 +29,11 @@ Search Console and Bing Webmaster verification and sitemap submission still need
 Vercel reports that `snipray.selfgraphic.tech` is attached to the project but not configured at DNS. To activate that legacy redirect, add this record in Cloudflare: `A` record, name `snipray`, value `76.76.21.21`. No DNS record was changed in this work.
 
 See [`BASELINE_AUDIT.md`](BASELINE_AUDIT.md), [`IMPLEMENTATION.md`](IMPLEMENTATION.md), [`KEYWORD_STRATEGY.md`](KEYWORD_STRATEGY.md), [`AEO_GEO_STRATEGY.md`](AEO_GEO_STRATEGY.md), and [`GROWTH_STRATEGY.md`](GROWTH_STRATEGY.md).
+
+## Incremental SEO, AEO, and GEO expansion (2026-11-26)
+
+The current implementation adds consistent visible and structured breadcrumbs, a factual `WebApplication` entity connected to Self Graphic Lab, stronger contextual routes between the scanner, generator, privacy, security, and task guides, one consistent homepage FAQ set, and an optional plain-text product guide at `/llms.txt`. The SEO validator now checks these entities and links across all generated routes.
+
+This work does not add thin keyword pages, fabricated statistics or reviews, FAQ rich-result markup, trackers, or new crawler permissions. No Search Console query data was available in this run; keyword prioritization remains based on product fit and previously documented qualitative research. Production release and Search Console re-crawl remain separate actions after preview review.
+
+Local verification on 2026-11-26: 10 unit tests passed; lint, site build, and SEO validation passed for all 13 routes; isolated Chromium browser QA passed 15 scenarios. The deployment preview and the custom-domain response were not verified during this implementation run.

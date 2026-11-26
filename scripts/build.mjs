@@ -39,12 +39,18 @@ function renderRouteCopy(route) {
   return '<article class="wrap route-copy"><p class="overline">SKIPCAM / ' + escapeHtml(route.h1.toUpperCase()) + '</p>' + blocks + questions + '</article>';
 }
 
+function renderBreadcrumb(route) {
+  if (route.path === '/') return '';
+  return '<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">' + escapeHtml(route.h1) + '</li></ol></nav>';
+}
+
 function structuredData(route, canonical, site) {
   const studio = 'https://www.selfgraphic.tech/';
+  const appId = site + '/#webapplication';
   const graph = [
     {
       '@type': 'Organization', '@id': studio + '#organization', name: 'Self Graphic Lab',
-      url: studio, email: 'contact@selfgraphic.tech'
+      url: studio, email: 'contact@selfgraphic.tech', logo: site + '/media/symbol.svg'
     },
     {
       '@type': 'WebSite', '@id': site + '/#website', name: 'SkipCam', url: site + '/',
@@ -54,9 +60,29 @@ function structuredData(route, canonical, site) {
       '@type': 'WebPage', '@id': canonical + '#webpage', name: route.title,
       description: route.description, url: canonical,
       isPartOf: { '@id': site + '/#website' }, publisher: { '@id': studio + '#organization' },
-      inLanguage: 'en'
+      about: { '@id': appId }, inLanguage: 'en'
     }
   ];
+  graph.push({
+    '@type': 'WebApplication', '@id': appId, name: 'SkipCam', url: site + '/',
+    applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any modern web browser',
+    browserRequirements: 'JavaScript and Canvas support; screen capture also requires a secure browser context and getDisplayMedia support.',
+    isAccessibleForFree: true, creator: { '@id': studio + '#organization' },
+    featureList: [
+      'Scan QR codes from selected image files, pasted screenshots, or one browser-selected screen frame.',
+      'Generate QR codes for URLs, text, Wi-Fi, email, telephone, SMS, and contact cards.',
+      'Customize QR appearance and export PNG or SVG files.',
+      'Inspect decoded destinations with offline heuristics; decoded links are not opened automatically.'
+    ]
+  });
+  if (route.path !== '/') {
+    graph.push({
+      '@type': 'BreadcrumbList', '@id': canonical + '#breadcrumb', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: site + '/' },
+        { '@type': 'ListItem', position: 2, name: route.h1, item: canonical }
+      ]
+    });
+  }
   return '<script type="application/ld+json">' + JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replaceAll('<', '\\u003c') + '</script>';
 }
 
@@ -124,6 +150,7 @@ async function website() {
       .replace('<!-- structured-data -->', structuredData(route, canonical, site));
     html = html.replace('<!-- page-h1 -->Scan QR Codes Online Without Your Phone', escapeHtml(route.h1));
     html = html.replace('<!-- route-lead -->Read a code from an image, paste a screenshot, or capture one frame from your screen.', escapeHtml(route.lead));
+    html = html.replace('<!-- route-breadcrumb -->', renderBreadcrumb(route));
     html = html.replace('<!-- route-content -->', renderRouteCopy(route));
     if (!route.tool) html = html.replace(/<!-- tool-section:start -->[\s\S]*?<!-- tool-section:end -->/, '');
     if (route.path !== '/') html = html.replace(/<!-- homepage-content:start -->[\s\S]*?<!-- homepage-content:end -->/, '');
