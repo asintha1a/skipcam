@@ -11,7 +11,7 @@
 - Kept `/history/` available to users, marked it `noindex,follow`, and removed it from the XML sitemap. The page describes the actual opt-in storage behavior.
 - Added a static 404 page and changed Vercel routing to one trailing-slash policy. Legacy `skipcam.vercel.app` and `snipray` host redirects now point at the official custom domain.
 - Added a generated-output validator and expanded browser QA to visit each page directly. The service worker now precaches the static pages for offline navigation after an online visit.
-- Kept structured data to factual `Organization`, `WebSite`, and `WebPage` entities. No rating, review, download count, security guarantee, or browser-store availability is asserted.
+- Kept structured data factual and content-matched. No rating, review, download count, security guarantee, or browser-store availability is asserted.
 
 ## Validation
 
@@ -24,6 +24,16 @@ Use the documented result from each run. Local validation does not establish sea
 No Search Console, Bing Webmaster, analytics, or SEO reporting account was connected during the audit. An owner should verify the custom-domain properties, submit `https://skipcam.selfgraphic.tech/sitemap.xml`, and review indexing and query reports after crawl. Avoid adding analytics solely to measure SEO if the privacy model is to remain tracker-free.
 
 PageSpeed Insights returned HTTP 429 for both mobile and desktop requests during the baseline audit. No Lighthouse or field performance result is claimed. Re-run PSI or Lighthouse later and record the date, URL, device category, and tool version with each result.
+
+## 2026-11-26 search visibility expansion
+
+- Added visible Home-to-task links for image scanning, same-screen scanning, Wi-Fi code creation, and scan troubleshooting; added contextual links across scanner, generator, privacy, security, about, extension, and help pages. The footer now gives every route a consistent crawlable path to the highest-intent task pages.
+- Removed the duplicate homepage FAQ block. The source-controlled homepage questions now provide one consistent, server-rendered answer set rather than two copies with slightly different wording.
+- Added visible two-level breadcrumbs and matching `BreadcrumbList` data on interior pages. Added a `WebApplication` entity linked to `WebPage`, `WebSite`, and the Self Graphic Lab publisher, with features and browser requirements that match the shipped product. No ratings, reviews, prices, or rich-result eligibility claims were invented.
+- Added `site/llms.txt` as a compact, optional factual route map for AI systems and readers. It states key product limits and source links; it is not presented as a ranking factor or citation guarantee.
+- Expanded SEO validation to check publisher/product entities, matching breadcrumbs, links to key task routes on every page, and completeness of the AI-readable route map.
+
+Validation: `npm test` (10 passed), `npm run lint`, `npm run build -- site`, `npm run seo:validate` (13 routes), and isolated `npm run test:browser` (15 scenarios passed, including mobile overflow and browser-console checks). Generated browser screenshots were restored so QA output did not alter the product's committed screenshots.
 
 ## Current official guidance consulted
 

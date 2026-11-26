@@ -1,0 +1,27 @@
+# SkipCam
+
+> SkipCam is a browser-based QR code scanner and generator maintained by Self Graphic Lab. The web app can scan selected images, pasted screenshots, or one screen frame selected through the browser's sharing prompt. QR decoding and generation run locally in the browser.
+
+SkipCam does not require an account or an external QR-processing service. The optional scan history is off by default and remains in the current browser. Decoded links are not opened automatically. URL inspection uses offline heuristics and does not guarantee that a destination is safe.
+
+## Product pages
+
+- [Online QR scanner and generator](https://skipcam.selfgraphic.tech/): main web app and product overview.
+- [QR scanner](https://skipcam.selfgraphic.tech/scan/): scan an image, screenshot, or browser-selected still frame.
+- [QR generator](https://skipcam.selfgraphic.tech/generate/): create QR codes for URLs, text, Wi-Fi, email, telephone, SMS, and contact cards; export PNG or SVG.
+- [Scan a QR code from an image](https://skipcam.selfgraphic.tech/scan-qr-code-from-image/): supported image, paste, and crop workflow.
+- [Scan a QR code without a phone](https://skipcam.selfgraphic.tech/scan-qr-code-without-phone/): screen-sharing steps and screenshot fallback.
+- [Wi-Fi QR code generator](https://skipcam.selfgraphic.tech/wifi-qr-code-generator/): create and review a Wi-Fi payload locally.
+- [QR scan troubleshooting](https://skipcam.selfgraphic.tech/guides/why-a-qr-code-will-not-scan/): image, contrast, crop, and permission checks.
+- [Browser extension](https://skipcam.selfgraphic.tech/extension/): beta status and installation information.
+- [Privacy](https://skipcam.selfgraphic.tech/privacy/): data handling details and limitations.
+- [Security](https://skipcam.selfgraphic.tech/security/): offline URL inspection scope and warnings.
+- [Help](https://skipcam.selfgraphic.tech/help/): browser requirements, scanning steps, and support links.
+- [About SkipCam](https://skipcam.selfgraphic.tech/about/): product and maintainer information.
+
+## Source and maintainer
+
+- Maintainer: [Self Graphic Lab](https://www.selfgraphic.tech/).
+- Source code, releases, license, and upstream attribution: [SkipCam on GitHub](https://github.com/asintha1a/skipcam).
+
+This file is a plain-text product guide. It does not indicate search ranking, certification, or endorsement by an AI service.
