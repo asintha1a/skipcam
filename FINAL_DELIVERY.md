@@ -1,6 +1,6 @@
 # SkipCam web application delivery
 
-Updated: 2026-11-25. Statuses reflect checks performed against source, production and release services.
+Updated: 2026-11-26. Statuses reflect checks performed against source, production and release services.
 
 ## Product and source
 
@@ -39,9 +39,9 @@ Updated: 2026-11-25. Statuses reflect checks performed against source, productio
 
 ## Self Graphic Lab portfolio
 
-- **VERIFIED — Existing PR updated:** [Self Graphic Lab portfolio PR #7](https://github.com/asintha1a/self-graphic-lab-website/pull/7) remains open on `feat/snipray-portfolio`. The branch now describes SkipCam as both a web QR toolkit and browser extension, updates the canonical product URL and SEO copy, and includes three actual scanner/generator/result screenshots.
-- **VERIFIED — PR branch commit:** `a2017dd7aec6499f872536508bc91bb96716b5ea`.
-- **UNVERIFIED — Portfolio preview/build:** Vercel preview is rebuilding after the update. Portfolio-specific tests/build and a live production case-study route have not been verified. The PR was not merged, so the production portfolio remains unchanged.
+- **VERIFIED — Case study:** [Self Graphic Lab portfolio PR #7](https://github.com/asintha1a/self-graphic-lab-website/pull/7) merged on 2026-11-26 (merge commit `9bf7ba6ca9e73d0163fbd917edfef1a726f01314`). The project is published at [www.selfgraphic.tech/work/skipcam](https://www.selfgraphic.tech/work/skipcam).
+- **VERIFIED — Launch film:** [Portfolio PR #8](https://github.com/asintha1a/self-graphic-lab-website/pull/8) merged on 2026-11-26 (merge commit `700ca660970ecda977db996c115467fdead3db45`). The case study includes a poster and a 720p web-optimized copy of the 45-second launch film.
+- **VERIFIED — Production deployment:** Vercel reports the portfolio production deployment as READY with `www.selfgraphic.tech` among its aliases. Direct HTTPS retrieval from the current shell network was unavailable, so browser playback was not independently rechecked here.
 
 ## Known limitations and manual actions
 
@@ -49,5 +49,5 @@ Updated: 2026-11-25. Statuses reflect checks performed against source, productio
 2. Verify the web app in Firefox, Safari and a physical mobile browser; the current browser matrix is Chrome only.
 3. Complete popup/context-menu/settings QA for the extension in Chromium and Firefox before calling the extension fully verified.
 4. Publish a new beta extension package if the current shared decoder/generator source should be included in downloadable extension archives; beta.2 remains an earlier artifact.
-5. Review the updated portfolio preview, run any portfolio-specific tests, and merge PR #7 if approved.
+5. Recheck the portfolio case study and launch film in a browser on a network that can reach the production domain.
 6. Browser-store listings require separate submissions and approval; Firefox permanent installation requires signing.
